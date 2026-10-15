@@ -1,0 +1,13 @@
+{
+  "stage": 4,
+  "stage_steps": 0,
+  "global_steps": 80000,
+  "episodes": 43,
+  "last_checkpoint_step": 80000,
+  "status": "completed_training_not_yet_evaluated",
+  "client_seed_supported": false,
+  "phase": "online_train",
+  "initialization": "continuation_from_smoke_final_checkpoint",
+  "smoke_source_global_steps": 3072,
+  "smoke_source_updates": 5052
+}

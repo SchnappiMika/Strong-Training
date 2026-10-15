@@ -1,0 +1,133 @@
+{
+  "report_type": "single_shared_model_two_game_final_acceptance",
+  "created_date": "2026-10-08",
+  "objective": "使用一个基于原 WemiEnv 的 PyTorch 共享模型，同时完成 Flappy Bird 与 Timberman 的预设双游戏验收",
+  "acceptance_scope": "本次预设 WemiEnv 双游戏 benchmark；不外推到未见游戏或任意环境",
+  "acceptance_passed": true,
+  "training": {
+    "run": "experiments/20261008_122246_330413_mainline_shared_model",
+    "checkpoint": "experiments/20261008_122246_330413_mainline_shared_model/checkpoints/latest.pt",
+    "checkpoint_sha256": "f3ed7900942db70f70aa2479533c0622bf78d6b98a786a6534a1c43657b08bf9",
+    "real_environment_steps": 80000,
+    "stage_steps": 20000,
+    "stage_order": ["flappybird", "timberman", "flappybird", "timberman"],
+    "gradient_updates_at_checkpoint": 73056,
+    "updates_in_reported_update_log": 68004,
+    "initialization": "continuation_from_3072_step_shared_smoke_checkpoint",
+    "single_shared_actor_at_inference": true,
+    "teacher_paths_used_only_during_training": true,
+    "automatic_retraining_after_completion": false
+  },
+  "stage_short_evaluations": [
+    {
+      "stage": 1,
+      "task": "flappybird",
+      "episodes": 5,
+      "max_steps_per_episode": 300,
+      "mean_learning_return": 226.7753,
+      "natural_terminations": 0,
+      "truncated_episodes": 5,
+      "parameters_updated": false
+    },
+    {
+      "stage": 2,
+      "task": "timberman",
+      "episodes": 5,
+      "max_steps_per_episode": 300,
+      "mean_score": 251.4,
+      "natural_terminations": 0,
+      "truncated_episodes": 5,
+      "parameters_updated": false
+    },
+    {
+      "stage": 3,
+      "task": "flappybird",
+      "episodes": 5,
+      "max_steps_per_episode": 300,
+      "mean_learning_return": 225.3225,
+      "natural_terminations": 0,
+      "truncated_episodes": 5,
+      "parameters_updated": false
+    },
+    {
+      "stage": 4,
+      "task": "timberman",
+      "episodes": 5,
+      "max_steps_per_episode": 300,
+      "mean_score": 249.6,
+      "natural_terminations": 0,
+      "truncated_episodes": 5,
+      "parameters_updated": false
+    }
+  ],
+  "final_independent_evaluations": {
+    "policy": "deterministic_shared_actor_without_teachers",
+    "episodes_per_game": 20,
+    "max_steps_per_episode": 3000,
+    "client_seed_supported": false,
+    "flappybird": {
+      "run": "experiments/20261008_172006_553338_evaluate_flappybird",
+      "episodes": 20,
+      "mean_learning_return": 2267.3487263215898,
+      "std_learning_return": 23.807076383777005,
+      "mean_steps": 3000,
+      "natural_terminations": 0,
+      "truncated_episodes": 20,
+      "updates_before": 73056,
+      "updates_after": 73056,
+      "parameters_unchanged": true
+    },
+    "timberman": {
+      "run": "experiments/20261008_200326_813205_evaluate_timberman",
+      "episodes": 20,
+      "mean_score": 2505.85,
+      "std_score": 12.196958205785744,
+      "mean_steps": 3000,
+      "natural_terminations": 0,
+      "truncated_episodes": 20,
+      "updates_before": 73056,
+      "updates_after": 73056,
+      "parameters_unchanged": true
+    }
+  },
+  "same_checkpoint_evidence": {
+    "evaluated_on_both_games": true,
+    "flappybird_checkpoint_sha256": "f3ed7900942db70f70aa2479533c0622bf78d6b98a786a6534a1c43657b08bf9",
+    "timberman_checkpoint_sha256": "f3ed7900942db70f70aa2479533c0622bf78d6b98a786a6534a1c43657b08bf9",
+    "hashes_match": true,
+    "parameter_digest_before_evaluation": "ae6d8b3f714c0fbda040c367e50530e186c7f8f943171ad3f08600934efe817c",
+    "parameter_digest_after_flappybird": "ae6d8b3f714c0fbda040c367e50530e186c7f8f943171ad3f08600934efe817c",
+    "parameter_digest_after_timberman": "ae6d8b3f714c0fbda040c367e50530e186c7f8f943171ad3f08600934efe817c",
+    "gradient_updates_changed_during_evaluation": false
+  },
+  "starting_checkpoint_reference": {
+    "checkpoint": "experiments/20261006_171810_268739_repair_shared_policy/checkpoints/latest.pt",
+    "flappybird_mean_learning_return": 2288.7496717889644,
+    "timberman_mean_score": 2499.7,
+    "episodes_per_game": 20,
+    "max_steps_per_episode": 3000,
+    "parameters_unchanged": true
+  },
+  "interruptions_and_recovery": [
+    {
+      "event": "stage_2_client_timeout",
+      "detail": "首次切换到 Timberman 时未连接正确的 WemiEnv 客户端，训练在 20000 步处报告 No timberman client connected",
+      "resolution": "保持已保存检查点，从 20000 步恢复并完成剩余三个阶段",
+      "parameters_lost": false
+    }
+  ],
+  "limitations": [
+    "WemiEnv 客户端不支持可复现的游戏内部随机种子；Python 侧 seed 不能保证管道或树枝序列一致",
+    "3000 步是独立评估截断上限，截断不等于自然结束，也不等于无限游戏成绩",
+    "两款游戏的奖励尺度和含义不同，Flappy Bird 使用学习回报，Timberman 同时报告实际分数，不能直接横向比较数值",
+    "本验收覆盖已知的两款游戏；它证明双游戏共享策略在本 WemiEnv benchmark 上通过，不证明对未见第三款游戏的零样本泛化",
+    "seed2 和原计划的多组消融实验按用户的时间约束未执行，因此不能声称完成完整多种子统计或论文全部实验"
+  ],
+  "artifacts": {
+    "machine_report": "reports/最终验收_单模型双游戏.json",
+    "human_summary": "reports/最终总结_单模型双游戏.md",
+    "corrected_evaluation_summary": "reports/mainline_final_evaluation.json",
+    "training_report": "experiments/20261008_122246_330413_mainline_shared_model/report.json",
+    "training_curves": "experiments/20261008_122246_330413_mainline_shared_model/training_curves.png"
+  }
+}

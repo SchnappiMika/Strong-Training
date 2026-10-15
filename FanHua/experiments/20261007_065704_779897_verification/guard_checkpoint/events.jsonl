@@ -1,0 +1,3 @@
+{"time_utc": "2026-10-06T22:57:07.895662+00:00", "event": "resume", "checkpoint": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261007_065704_779897_verification\\guard_source.pt", "previous_status": "running", "previous_error": null, "global_steps": 0}
+{"time_utc": "2026-10-06T22:57:07.903612+00:00", "event": "stage_start", "task": "flappybird", "stage": 0, "global_steps": 0}
+{"time_utc": "2026-10-06T22:57:07.921815+00:00", "event": "failed", "error": "RuntimeError: Timberman policy regression detected; checkpoint retained for repair", "global_steps": 4}

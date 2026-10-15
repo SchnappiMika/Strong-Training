@@ -1,0 +1,35 @@
+{
+  "seed": 1,
+  "hidden_dim": 64,
+  "embedding_dim": 2,
+  "learning_rate": 0.0003,
+  "representation_lr": 0.001,
+  "gamma": 0.99,
+  "tau": 0.005,
+  "batch_size": 64,
+  "capacity": 50000,
+  "history_probability": 0.0,
+  "warmup_steps": 512,
+  "representation_steps": 500,
+  "cql_samples": 10,
+  "cql_weight": 0.1,
+  "calibration": true,
+  "checkpoint_interval": 2000,
+  "max_episode_steps": 3000,
+  "connect_timeout": 900,
+  "response_timeout": 30,
+  "stage_evaluation_episodes": 20,
+  "stage_evaluation_steps": 300,
+  "stages": [
+    {
+      "task": "flappybird",
+      "steps": 40000
+    }
+  ],
+  "policy_focus_timber": false,
+  "behavior_weight": 0.0,
+  "teacher_paths": {},
+  "experiment_role": "single_game_baseline",
+  "baseline_task": "flappybird",
+  "initialization": "random_without_external_data"
+}

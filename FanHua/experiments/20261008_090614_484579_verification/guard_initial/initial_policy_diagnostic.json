@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "checked_observed_patterns": 1,
+  "failures": [
+    {
+      "hazard": "cut_exposes_branch"
+    }
+  ]
+}

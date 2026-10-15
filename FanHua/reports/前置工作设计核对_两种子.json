@@ -1,0 +1,48 @@
+{
+  "decision": "seed_2_excluded",
+  "active_seeds": [
+    0,
+    1
+  ],
+  "excluded_seeds": [
+    2
+  ],
+  "reason": "User time constraint; two independent seeds remain for a minimum stability check",
+  "limitations": [
+    "Two seeds provide a comparison of initialization and sampling variation, not a strong multi-seed statistical estimate",
+    "No claim of seed-independent mastery or confidence interval is made",
+    "All seed 2 configurations and pending entries remain recorded but are not executed"
+  ],
+  "completed_baselines": [
+    {
+      "task": "flappybird",
+      "seed": 0,
+      "run": "experiments\\20261006_175422_464405_baseline_flappybird_seed_0",
+      "evaluation": "experiments\\20261006_193441_906918_evaluate_flappybird\\evaluation.json"
+    },
+    {
+      "task": "timberman",
+      "seed": 0,
+      "run": "experiments\\20261006_212657_236781_baseline_timberman_seed_0",
+      "evaluation": "experiments\\20261006_214301_209618_evaluate_timberman\\evaluation.json"
+    },
+    {
+      "task": "flappybird",
+      "seed": 1,
+      "run": "experiments\\20261006_221858_873810_baseline_flappybird_seed_1",
+      "evaluation": "experiments\\20261006_235401_533654_evaluate_flappybird\\evaluation.json"
+    },
+    {
+      "task": "timberman",
+      "seed": 1,
+      "run": "experiments\\20261006_215037_511319_baseline_timberman_seed_1",
+      "evaluation": "experiments\\20261006_220515_750833_evaluate_timberman\\evaluation.json"
+    }
+  ],
+  "formal_groups": 9,
+  "formal_seeds": 2,
+  "formal_runs": 18,
+  "formal_training_steps": 1440000,
+  "formal_training_ready": false,
+  "formal_experiments_authorized": false
+}

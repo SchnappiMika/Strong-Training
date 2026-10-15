@@ -1,0 +1,1 @@
+{"time_utc": "2026-10-08T03:58:05.601365+00:00", "event": "checkpoint_policy_check", "global_steps": 2048, "checked_observed_patterns": 8, "failures": [], "passed": true, "scope": "Regression diagnostic on replay observations; does not alter actions or establish game score"}

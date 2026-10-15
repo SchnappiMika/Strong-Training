@@ -1,0 +1,10 @@
+{
+  "stage": 1,
+  "stage_steps": 12,
+  "global_steps": 24,
+  "episodes": 12,
+  "last_checkpoint_step": 22,
+  "status": "failed",
+  "client_seed_supported": false,
+  "error": "TypeError: can't convert type 'NoneType' to numerator/denominator"
+}

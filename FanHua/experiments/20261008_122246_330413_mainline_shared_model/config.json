@@ -1,0 +1,51 @@
+{
+  "seed": 0,
+  "hidden_dim": 64,
+  "embedding_dim": 2,
+  "learning_rate": 0.0003,
+  "representation_lr": 0.001,
+  "gamma": 0.99,
+  "tau": 0.005,
+  "batch_size": 64,
+  "capacity": 50000,
+  "history_probability": 0.25,
+  "warmup_steps": 512,
+  "representation_steps": 500,
+  "cql_samples": 10,
+  "cql_weight": 0.1,
+  "behavior_weight": 5.0,
+  "calibration": true,
+  "checkpoint_interval": 2000,
+  "max_episode_steps": 3000,
+  "connect_timeout": 900,
+  "response_timeout": 30,
+  "stage_evaluation_episodes": 5,
+  "stage_evaluation_steps": 300,
+  "stages": [
+    {
+      "task": "flappybird",
+      "steps": 20000
+    },
+    {
+      "task": "timberman",
+      "steps": 20000
+    },
+    {
+      "task": "flappybird",
+      "steps": 20000
+    },
+    {
+      "task": "timberman",
+      "steps": 20000
+    }
+  ],
+  "policy_focus_timber": true,
+  "teacher_paths": {
+    "flappybird": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\flappybird_rl\\logs\\ppo_20260925_174115_model.pt",
+    "timberman": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261006_161456_139334_timber_first_smoke\\checkpoints\\latest.pt"
+  },
+  "behavior_target": "training_only_teacher_actions_CE_plus_embedding_regression",
+  "experiment_role": "shared_model_mainline",
+  "initialization": "resume_from_shared_candidate",
+  "source_checkpoint": "experiments/20261006_171810_268739_repair_shared_policy/checkpoints/latest.pt"
+}

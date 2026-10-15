@@ -1,0 +1,19 @@
+{
+  "verified_at": "2026-10-12T13:18:44.064Z",
+  "passed": true,
+  "checks": [
+    "知识点教程_双游戏泛化.html: headings and local links",
+    "知识点教程_双游戏泛化.html: white background and readable document panels",
+    "组会汇报_双游戏泛化训练.html: headings and local links",
+    "组会汇报_双游戏泛化训练.html: white background and readable document panels",
+    "Worked update: all six steps, numeric example, boundaries, previous and reset",
+    "Tutorial interactions: task, actions, discount, history, calibration, gradient, latent mapping, simulation, quizzes, pause",
+    "Meeting interactions: four stages, presentation, notes, 20-episode charts checked against original evaluations",
+    "Responsive: no document overflow at 390px",
+    "Responsive: no document overflow at 768px",
+    "Responsive: no document overflow at 1440px",
+    "Print: light background, dark headings, full notes expanded and restored"
+  ],
+  "browser_errors": [],
+  "training_or_game_started": false
+}

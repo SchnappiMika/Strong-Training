@@ -1,0 +1,392 @@
+{
+  "format_version": 1,
+  "formal_training_ready": false,
+  "formal_experiments_authorized": false,
+  "client_seed_supported": false,
+  "reference_commit": "35ba6fc167d9f3257a1c12d943600b096e79f6b9",
+  "baseline_steps_per_task": 40000,
+  "formal_steps_per_task": 40000,
+  "baseline_final_evaluation_episodes": 20,
+  "baseline_final_evaluation_steps": 3000,
+  "short_stage_evaluation_episodes": 20,
+  "short_stage_evaluation_steps": 300,
+  "primary_seed": 0,
+  "planned_replication_seeds": [
+    1
+  ],
+  "design_review": "configuration_and_all_baseline_checks_passed_formal_experiments_held",
+  "teacher_provenance": {
+    "flappybird": {
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\flappybird_rl\\logs\\ppo_20260925_174115_model.pt",
+      "sha256": "ea5e5d22e4518ccb7a6dd2bb9671afc785af2a029412de0be6bef374c3457ceb",
+      "use": "training supervision only; never deployment action selection"
+    },
+    "timberman": {
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261006_161456_139334_timber_first_smoke\\checkpoints\\latest.pt",
+      "sha256": "6f03a3d9df93eadd4ff755108bc8923fa1a04db9cef3f2ac988237f15b2413ff",
+      "use": "training supervision only; never deployment action selection"
+    }
+  },
+  "experiments": [
+    {
+      "role": "single_game_baseline",
+      "task": "flappybird",
+      "seed": 0,
+      "config": "configs\\prerequisites_v2\\baseline_flappybird_seed_0.json",
+      "config_sha256": "c346011ef22fa12bd45270a969a17f56a4d44e8e1611f3673249be21ca117b70",
+      "status": "completed",
+      "run": "experiments\\20261006_175422_464405_baseline_flappybird_seed_0",
+      "evaluation": "experiments\\20261006_193441_906918_evaluate_flappybird\\evaluation.json",
+      "result": {
+        "mean_steps": 3000,
+        "mean_learning_return": 2313.2230598348106,
+        "std_learning_return": 28.454276716061536,
+        "checkpoint_sha256": "30a40e9e6687d1d2cbd691e86528f21375435af01a2e7b0ac7ca4fb645a41edb",
+        "natural_terminations": 0,
+        "truncated_episodes": 20
+      }
+    },
+    {
+      "role": "single_game_baseline",
+      "task": "timberman",
+      "seed": 0,
+      "config": "configs\\prerequisites_v2\\baseline_timberman_seed_0.json",
+      "config_sha256": "f2a2615ee2ccdb4cdb7c422bf26458e80605bf32e04fa53ce6e873ad2a2468a1",
+      "status": "completed",
+      "run": "experiments\\20261006_212657_236781_baseline_timberman_seed_0",
+      "evaluation": "experiments\\20261006_214301_209618_evaluate_timberman\\evaluation.json",
+      "result": {
+        "mean_steps": 3000,
+        "mean_learning_return": 2499.0,
+        "std_learning_return": 14.959594703206719,
+        "checkpoint_sha256": "9ee77dbf7ea33540ea941815ba451da6ba7001954f24ccddd4622f569c1de045",
+        "mean_score": 2499.0,
+        "natural_terminations": 0,
+        "truncated_episodes": 20
+      }
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "core_full",
+      "seed": 0,
+      "config": "configs\\prerequisites_v2\\core_full_seed_0.json",
+      "config_sha256": "c161c84541f094e7e9e57408c1c15f276aea7aba427e6408be374af9dbba32dd",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "core_without_calibration",
+      "seed": 0,
+      "config": "configs\\prerequisites_v2\\core_without_calibration_seed_0.json",
+      "config_sha256": "506c92fea41739af4cf91e958cca3f185387a2b1094eaf87daf3f47950295783",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "core_without_history",
+      "seed": 0,
+      "config": "configs\\prerequisites_v2\\core_without_history_seed_0.json",
+      "config_sha256": "dafd5896a977e0a690019befe3545af29adafc5c43aab7599b0c8c6dc094b9a1",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "latent_sac",
+      "seed": 0,
+      "config": "configs\\prerequisites_v2\\latent_sac_seed_0.json",
+      "config_sha256": "8aa5948ac4cd51376ae74b01cf8665a625b24fefcd520306fc21922e10c0e665",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "guided_focused",
+      "seed": 0,
+      "config": "configs\\prerequisites_v2\\guided_focused_seed_0.json",
+      "config_sha256": "74cd507325248576cbf9310e5f8ea4570a0aaee5c48ca9002e6e0a318d75c79e",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "focused_without_guidance",
+      "seed": 0,
+      "config": "configs\\prerequisites_v2\\focused_without_guidance_seed_0.json",
+      "config_sha256": "f208957d6a2698ba6bdc2e0353480b3823a73409a95b4e750ef27b44bbe6deeb",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "guided_without_focus",
+      "seed": 0,
+      "config": "configs\\prerequisites_v2\\guided_without_focus_seed_0.json",
+      "config_sha256": "1fea2ac6cec76405a947203c312b49af3efc8c5bc7197b95fe3f46a58be140fa",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "guided_focused_without_calibration",
+      "seed": 0,
+      "config": "configs\\prerequisites_v2\\guided_focused_without_calibration_seed_0.json",
+      "config_sha256": "ee069b2b52c042345f012e53d98c2f7b5ee52ed1d2c6a007ebf42d6094050483",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "guided_focused_without_history",
+      "seed": 0,
+      "config": "configs\\prerequisites_v2\\guided_focused_without_history_seed_0.json",
+      "config_sha256": "6a1a2210bcb9d477a0a2fbd35d3ff5b65364136eb568d0766f777f36506944ee",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "single_game_baseline",
+      "task": "flappybird",
+      "seed": 1,
+      "config": "configs\\prerequisites_v2\\baseline_flappybird_seed_1.json",
+      "config_sha256": "6406656a7fe776a6fab7b56e5f20f04fafac78b4dce4240f0b5af17a78e2f8ed",
+      "status": "completed",
+      "run": "experiments\\20261006_221858_873810_baseline_flappybird_seed_1",
+      "evaluation": "experiments\\20261006_235401_533654_evaluate_flappybird\\evaluation.json",
+      "result": {
+        "mean_steps": 3000,
+        "mean_learning_return": 2306.4057316350086,
+        "std_learning_return": 26.502571720878436,
+        "checkpoint_sha256": "db2a635d3296879cbbe4d98e8cd8e8632ac496b03243ac4faf00b12659e4792e",
+        "natural_terminations": 0,
+        "truncated_episodes": 20
+      }
+    },
+    {
+      "role": "single_game_baseline",
+      "task": "timberman",
+      "seed": 1,
+      "config": "configs\\prerequisites_v2\\baseline_timberman_seed_1.json",
+      "config_sha256": "5f002eacd0dbbd26e8b98682ced77679fcb1be6b6148fd898d8d367775cebe4a",
+      "status": "completed",
+      "run": "experiments\\20261006_215037_511319_baseline_timberman_seed_1",
+      "evaluation": "experiments\\20261006_220515_750833_evaluate_timberman\\evaluation.json",
+      "result": {
+        "mean_steps": 3000,
+        "mean_learning_return": 2501.45,
+        "std_learning_return": 16.69691115461968,
+        "checkpoint_sha256": "85a543ffc7f6519a54ed6ede6a93556a89420a14e9ea999580241b7bf7313009",
+        "mean_score": 2501.45,
+        "natural_terminations": 0,
+        "truncated_episodes": 20
+      }
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "core_full",
+      "seed": 1,
+      "config": "configs\\prerequisites_v2\\core_full_seed_1.json",
+      "config_sha256": "7f79ba78f75745f25f4d18c5d369552367450acbf8916062e356131d47f8c0f3",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "core_without_calibration",
+      "seed": 1,
+      "config": "configs\\prerequisites_v2\\core_without_calibration_seed_1.json",
+      "config_sha256": "18aa8856eac73cb17322cabe18f0811a84da9bc74330ab79999ce613e94fe1da",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "core_without_history",
+      "seed": 1,
+      "config": "configs\\prerequisites_v2\\core_without_history_seed_1.json",
+      "config_sha256": "d419eee5545f414115bf3bd9d02f6c66e2d46e4e76f65aef7ed239199aa64eed",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "latent_sac",
+      "seed": 1,
+      "config": "configs\\prerequisites_v2\\latent_sac_seed_1.json",
+      "config_sha256": "68e2d1ef8f7964d58d269e17c368850d2e5f22eead1b7edd27990e009bcd8854",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "guided_focused",
+      "seed": 1,
+      "config": "configs\\prerequisites_v2\\guided_focused_seed_1.json",
+      "config_sha256": "d6994a15c402451b3269061182a1508e5b9819360ff450881e7b0505bd3b7938",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "focused_without_guidance",
+      "seed": 1,
+      "config": "configs\\prerequisites_v2\\focused_without_guidance_seed_1.json",
+      "config_sha256": "405438f7d040276f772aa6cfb5f624e71b8d41a20d898e2b45fdb0d5870a4d4c",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "guided_without_focus",
+      "seed": 1,
+      "config": "configs\\prerequisites_v2\\guided_without_focus_seed_1.json",
+      "config_sha256": "207b12ee5a0e257eaca81c8955e7986548ebffba78111392a2b21670f0d40f9c",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "guided_focused_without_calibration",
+      "seed": 1,
+      "config": "configs\\prerequisites_v2\\guided_focused_without_calibration_seed_1.json",
+      "config_sha256": "0a5f33b92333fa59f25490111a12c202c0b5980fc59bdb02561b332e3e7f543d",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "guided_focused_without_history",
+      "seed": 1,
+      "config": "configs\\prerequisites_v2\\guided_focused_without_history_seed_1.json",
+      "config_sha256": "7df7e66c609fe64066f9b8e01dbdb7fd5a5b54c0b97d7a28521cc96f3665d419",
+      "status": "held",
+      "run": null
+    },
+    {
+      "role": "single_game_baseline",
+      "task": "flappybird",
+      "seed": 2,
+      "config": "configs\\prerequisites_v2\\baseline_flappybird_seed_2.json",
+      "config_sha256": "c65c494bc0eb4a732fe4cd4597c8e01274f005320c12d145e3df9790c62223a6",
+      "status": "skipped_by_time_budget",
+      "run": null,
+      "evaluation": null,
+      "skip_reason": "User approved two-seed plan; seed 2 is not run"
+    },
+    {
+      "role": "single_game_baseline",
+      "task": "timberman",
+      "seed": 2,
+      "config": "configs\\prerequisites_v2\\baseline_timberman_seed_2.json",
+      "config_sha256": "7f2f1482e1a1452bf6305551461eca8afb8cee83c0366281f024a97e42b2b3bd",
+      "status": "skipped_by_time_budget",
+      "run": null,
+      "evaluation": null,
+      "skip_reason": "User approved two-seed plan; seed 2 is not run"
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "core_full",
+      "seed": 2,
+      "config": "configs\\prerequisites_v2\\core_full_seed_2.json",
+      "config_sha256": "e7bacffcd298a6c9c10d992af9a5e36aca0b528b40fe9d17f4df7bc6a8ceec28",
+      "status": "excluded_by_time_budget",
+      "run": null,
+      "skip_reason": "User approved two-seed formal plan; seed 2 is not run"
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "core_without_calibration",
+      "seed": 2,
+      "config": "configs\\prerequisites_v2\\core_without_calibration_seed_2.json",
+      "config_sha256": "a21d3021ea4d2c09df214e7b24d8593d6beac1d9fcce5bfd93a7e841bd61ee60",
+      "status": "excluded_by_time_budget",
+      "run": null,
+      "skip_reason": "User approved two-seed formal plan; seed 2 is not run"
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "core_without_history",
+      "seed": 2,
+      "config": "configs\\prerequisites_v2\\core_without_history_seed_2.json",
+      "config_sha256": "e2a47d1a1535e8f9a9e7a2edb0f1a10cf377ba745c1c0b4166263ff8eaadceeb",
+      "status": "excluded_by_time_budget",
+      "run": null,
+      "skip_reason": "User approved two-seed formal plan; seed 2 is not run"
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "latent_sac",
+      "seed": 2,
+      "config": "configs\\prerequisites_v2\\latent_sac_seed_2.json",
+      "config_sha256": "3f537bc2037495abb15910e44e046eec3aedb05fa5b771929d8f1bbaa954f766",
+      "status": "excluded_by_time_budget",
+      "run": null,
+      "skip_reason": "User approved two-seed formal plan; seed 2 is not run"
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "guided_focused",
+      "seed": 2,
+      "config": "configs\\prerequisites_v2\\guided_focused_seed_2.json",
+      "config_sha256": "4fbeed092553ee04bef859c3f36b53d6c954480e6b96066a74c3e1c8f37b4318",
+      "status": "excluded_by_time_budget",
+      "run": null,
+      "skip_reason": "User approved two-seed formal plan; seed 2 is not run"
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "focused_without_guidance",
+      "seed": 2,
+      "config": "configs\\prerequisites_v2\\focused_without_guidance_seed_2.json",
+      "config_sha256": "a2f070b036bac4fdd58a65da682fdaa2a73e039c476e309baaa407a0b3b33cb6",
+      "status": "excluded_by_time_budget",
+      "run": null,
+      "skip_reason": "User approved two-seed formal plan; seed 2 is not run"
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "guided_without_focus",
+      "seed": 2,
+      "config": "configs\\prerequisites_v2\\guided_without_focus_seed_2.json",
+      "config_sha256": "8e4e76c5158c3a6038a2e9529da6dcccc5f4124d88dad0a4555026f7ac956d2f",
+      "status": "excluded_by_time_budget",
+      "run": null,
+      "skip_reason": "User approved two-seed formal plan; seed 2 is not run"
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "guided_focused_without_calibration",
+      "seed": 2,
+      "config": "configs\\prerequisites_v2\\guided_focused_without_calibration_seed_2.json",
+      "config_sha256": "27f9597b2c2439aad2ba021af54a05726451012f526af2c3077323237d2e1d25",
+      "status": "excluded_by_time_budget",
+      "run": null,
+      "skip_reason": "User approved two-seed formal plan; seed 2 is not run"
+    },
+    {
+      "role": "formal_continual_experiment",
+      "group": "guided_focused_without_history",
+      "seed": 2,
+      "config": "configs\\prerequisites_v2\\guided_focused_without_history_seed_2.json",
+      "config_sha256": "1874d77423e8ed04f0bc16aee24231825dfd091f1005fd93cfea2a27ce9de7c5",
+      "status": "excluded_by_time_budget",
+      "run": null,
+      "skip_reason": "User approved two-seed formal plan; seed 2 is not run"
+    }
+  ],
+  "notes": [
+    "Single-game baselines start independently from random initialization with no teachers, offline data, or shared checkpoints",
+    "Formal groups start from scratch; the repaired shared checkpoint is an exploratory reference, not their initializer",
+    "The Timberman teacher itself comes from prior shared smoke training; guidance is external prior knowledge and is not pure RL",
+    "Guidance and input focusing are engineering additions, not original Cal-LAICA components",
+    "No-calibration changes only calibration; no-history changes only history within each matched family",
+    "Final evaluations are separate no-update runs on each saved baseline checkpoint",
+    "Baseline failure is retained as an outcome, not hidden by substituting a teacher or changing its budget",
+    "Seed 0 baselines run first; remaining replication configs are prepared, not claimed completed"
+  ],
+  "design_review_report": "reports/前置工作设计核对.json",
+  "replication_policy": "two seeds only: primary seed 0 plus replication seed 1; seed 2 excluded by time budget"
+}

@@ -1,0 +1,52 @@
+{
+  "status": "completed",
+  "task": "flappybird",
+  "episodes": [
+    {
+      "episode": 0,
+      "task": "flappybird",
+      "steps": 2,
+      "learning_return": 2.0,
+      "raw_return": 2.0,
+      "score": null,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "episode": 1,
+      "task": "flappybird",
+      "steps": 2,
+      "learning_return": 2.0,
+      "raw_return": 2.0,
+      "score": null,
+      "terminated": true,
+      "truncated": false
+    },
+    {
+      "episode": 2,
+      "task": "flappybird",
+      "steps": 2,
+      "learning_return": 2.0,
+      "raw_return": 2.0,
+      "score": null,
+      "terminated": true,
+      "truncated": false
+    }
+  ],
+  "action_counts": {
+    "0": 0,
+    "1": 6
+  },
+  "deterministic_policy": true,
+  "client_seed_supported": false,
+  "parameters_before": "5813d167f96b7aa2147054189219b619c113753ab025d56cf0b18698a739fca7",
+  "parameters_after": "5813d167f96b7aa2147054189219b619c113753ab025d56cf0b18698a739fca7",
+  "updates_before": 0,
+  "updates_after": 0,
+  "mean_learning_return": 2.0,
+  "std_learning_return": 0.0,
+  "mean_steps": 2,
+  "checkpoint": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261007_065645_634355_verification\\formal_gate\\flappybird\\checkpoints\\latest.pt",
+  "checkpoint_sha256": "e5c0eb03acf7bbe0ca24a8961df64bf0b3cd158a8062a4775d3c43cb2e209ac8",
+  "evaluation_max_steps": 10
+}

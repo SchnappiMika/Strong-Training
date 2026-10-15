@@ -1,0 +1,2 @@
+{"time_utc": "2026-10-06T09:33:27.237798+00:00", "event": "resume", "checkpoint": "FanHua/experiments/20261006_171810_268739_repair_shared_policy/checkpoints/latest.pt", "previous_status": "completed_policy_repair_requires_real_evaluation", "previous_error": null, "global_steps": 0}
+{"time_utc": "2026-10-06T09:33:27.716031+00:00", "event": "stage_start", "task": "flappybird", "stage": 0, "global_steps": 0}

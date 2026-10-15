@@ -1,0 +1,72 @@
+{
+  "status": "completed",
+  "task": "flappybird",
+  "episodes": [
+    {
+      "episode": 0,
+      "task": "flappybird",
+      "steps": 256,
+      "learning_return": 195.8638839745937,
+      "raw_return": 19586.38839745934,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 1,
+      "task": "flappybird",
+      "steps": 256,
+      "learning_return": 190.96706844778083,
+      "raw_return": 19096.706844778077,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 2,
+      "task": "flappybird",
+      "steps": 256,
+      "learning_return": 198.71503765954125,
+      "raw_return": 19871.50376595414,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 3,
+      "task": "flappybird",
+      "steps": 256,
+      "learning_return": 199.23903519021798,
+      "raw_return": 19923.9035190218,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 4,
+      "task": "flappybird",
+      "steps": 256,
+      "learning_return": 191.1094562987121,
+      "raw_return": 19110.945629871218,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    }
+  ],
+  "action_counts": {
+    "0": 958,
+    "1": 322
+  },
+  "deterministic_policy": true,
+  "client_seed_supported": false,
+  "parameters_before": "58f5863aa999beb0b6e87f80e5e3e1bad67ea3acaf51f79bb3b6fc7fb734b5b9",
+  "parameters_after": "58f5863aa999beb0b6e87f80e5e3e1bad67ea3acaf51f79bb3b6fc7fb734b5b9",
+  "updates_before": 3513,
+  "updates_after": 3513,
+  "mean_learning_return": 195.17889631416918,
+  "std_learning_return": 3.99243244832255,
+  "mean_steps": 256,
+  "stage": 0,
+  "checkpoint": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261008_113537_446916_shared_mainline_smoke\\checkpoints\\latest.pt",
+  "checkpoint_sha256": "d8b834d61641003be64eb410a18b0868e7ebd219c57b8e3052fa914bb230a6d4"
+}

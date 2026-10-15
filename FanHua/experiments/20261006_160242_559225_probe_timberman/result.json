@@ -1,0 +1,53 @@
+{
+  "mode": "random_protocol_probe_no_training",
+  "task": "timberman",
+  "status": "passed",
+  "episodes": [
+    {
+      "episode": 1,
+      "steps": 2,
+      "return": 0.0,
+      "terminated": true,
+      "truncated": false,
+      "score": 1.0,
+      "encoded_dim": 12
+    },
+    {
+      "episode": 2,
+      "steps": 5,
+      "return": 2.0,
+      "terminated": true,
+      "truncated": false,
+      "score": 3.0,
+      "encoded_dim": 12
+    },
+    {
+      "episode": 3,
+      "steps": 3,
+      "return": 0.0,
+      "terminated": true,
+      "truncated": false,
+      "score": 1.0,
+      "encoded_dim": 12
+    },
+    {
+      "episode": 4,
+      "steps": 5,
+      "return": 3.0,
+      "terminated": true,
+      "truncated": false,
+      "score": 4.0,
+      "encoded_dim": 12
+    },
+    {
+      "episode": 5,
+      "steps": 7,
+      "return": 4.0,
+      "terminated": true,
+      "truncated": false,
+      "score": 5.0,
+      "encoded_dim": 12
+    }
+  ],
+  "client_seed_supported": false
+}

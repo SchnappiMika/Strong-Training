@@ -1,0 +1,12 @@
+{"time_utc": "2026-10-08T04:23:11.288326+00:00", "event": "resume", "checkpoint": "FanHua/experiments/20261008_122246_330413_mainline_shared_model/checkpoints/initialized.pt", "previous_status": "prepared_not_started", "previous_error": null, "global_steps": 0}
+{"time_utc": "2026-10-08T04:23:11.705450+00:00", "event": "stage_start", "task": "flappybird", "stage": 0, "global_steps": 0}
+{"time_utc": "2026-10-08T05:11:39.383851+00:00", "event": "stage_completed", "task": "flappybird", "stage": 0, "global_steps": 20000, "updates": 22053}
+{"time_utc": "2026-10-08T05:11:40.084826+00:00", "event": "stage_start", "task": "timberman", "stage": 1, "global_steps": 20000}
+{"time_utc": "2026-10-08T05:26:40.105375+00:00", "event": "failed", "error": "TimeoutError: No timberman client connected; compile the correct WeChat project", "global_steps": 20000}
+{"time_utc": "2026-10-08T07:20:00.521745+00:00", "event": "resume", "checkpoint": "FanHua/experiments/20261008_122246_330413_mainline_shared_model/checkpoints/latest.pt", "previous_status": "failed", "previous_error": "TimeoutError: No timberman client connected; compile the correct WeChat project", "global_steps": 20000}
+{"time_utc": "2026-10-08T07:20:01.164721+00:00", "event": "stage_start", "task": "timberman", "stage": 1, "global_steps": 20000}
+{"time_utc": "2026-10-08T07:27:15.583631+00:00", "event": "stage_completed", "task": "timberman", "stage": 1, "global_steps": 40000, "updates": 39054}
+{"time_utc": "2026-10-08T07:27:16.820150+00:00", "event": "stage_start", "task": "flappybird", "stage": 2, "global_steps": 40000}
+{"time_utc": "2026-10-08T08:22:40.487674+00:00", "event": "stage_completed", "task": "flappybird", "stage": 2, "global_steps": 60000, "updates": 56055}
+{"time_utc": "2026-10-08T08:22:46.361831+00:00", "event": "stage_start", "task": "timberman", "stage": 3, "global_steps": 60000}
+{"time_utc": "2026-10-08T08:40:29.261400+00:00", "event": "stage_completed", "task": "timberman", "stage": 3, "global_steps": 80000, "updates": 73056}

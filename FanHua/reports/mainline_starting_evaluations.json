@@ -1,0 +1,35 @@
+{
+  "phase": "starting_checkpoint_independent_evaluation",
+  "checkpoint": "experiments/20261006_171810_268739_repair_shared_policy/checkpoints/latest.pt",
+  "checkpoint_sha256": "7dcd633301b11959ff33b5cdad92a290ca78cd83bfe03ced8fcecddd86cdc493",
+  "flappybird": {
+    "run": "experiments/20261008_090713_066538_evaluate_flappybird",
+    "status": "completed",
+    "episodes": 20,
+    "max_steps_per_episode": 3000,
+    "mean_steps": 3000,
+    "mean_learning_return": 2288.7496717889644,
+    "std_learning_return": 28.19228423169853,
+    "natural_terminations": 0,
+    "truncated_episodes": 20,
+    "updates_before": 3000,
+    "updates_after": 3000,
+    "parameters_unchanged": true
+  },
+  "timberman": {
+    "run": "experiments/20261008_110244_748733_evaluate_timberman",
+    "status": "completed",
+    "episodes": 20,
+    "max_steps_per_episode": 3000,
+    "mean_steps": 3000,
+    "mean_score": 2499.7,
+    "std_score": 8.105228981472717,
+    "natural_terminations": 0,
+    "truncated_episodes": 20,
+    "updates_before": 3000,
+    "updates_after": 3000,
+    "parameters_unchanged": true
+  },
+  "mainline_training_started": false,
+  "new_training_updates": 0
+}

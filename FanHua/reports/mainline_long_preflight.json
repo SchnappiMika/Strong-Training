@@ -1,0 +1,23 @@
+{
+  "status": "prepared_not_started",
+  "run": "experiments\\20261008_122246_330413_mainline_shared_model",
+  "config": "configs/mainline_shared_model.json",
+  "source_smoke_checkpoint": "experiments\\20261008_113537_446916_shared_mainline_smoke\\checkpoints\\latest.pt",
+  "source_smoke_checkpoint_sha256": "ec45b559f69a68b066394eab32685d57a2a9e8ab3d684722d57a3408b583e5b0",
+  "source_smoke_global_steps": 3072,
+  "source_smoke_updates": 5052,
+  "carried_replay_tasks": {
+    "flappybird": 3136,
+    "timberman": 2304
+  },
+  "carried_ready_tasks": [
+    "flappybird",
+    "timberman"
+  ],
+  "new_training_steps": 0,
+  "new_training_updates": 0,
+  "planned_steps": 80000,
+  "stage_evaluation_episodes": 5,
+  "stage_evaluation_steps": 300,
+  "reset_reason": "Begin the long mainline counter after smoke validation while retaining smoke-learned weights and replay"
+}

@@ -1,0 +1,10 @@
+{
+  "stage": 3,
+  "stage_steps": 0,
+  "global_steps": 36,
+  "episodes": 18,
+  "last_checkpoint_step": 34,
+  "status": "completed_training_not_yet_evaluated",
+  "client_seed_supported": false,
+  "error": "ConnectionError: Synthetic disconnect"
+}

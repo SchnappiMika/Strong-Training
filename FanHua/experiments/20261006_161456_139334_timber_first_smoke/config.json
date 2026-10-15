@@ -1,0 +1,39 @@
+{
+  "seed": 0,
+  "hidden_dim": 64,
+  "embedding_dim": 2,
+  "learning_rate": 0.0003,
+  "representation_lr": 0.001,
+  "gamma": 0.99,
+  "tau": 0.005,
+  "batch_size": 64,
+  "capacity": 50000,
+  "history_probability": 0.25,
+  "warmup_steps": 256,
+  "representation_steps": 200,
+  "cql_samples": 10,
+  "cql_weight": 0.1,
+  "calibration": true,
+  "checkpoint_interval": 256,
+  "max_episode_steps": 1000,
+  "connect_timeout": 900,
+  "response_timeout": 30,
+  "stages": [
+    {
+      "task": "timberman",
+      "steps": 768
+    },
+    {
+      "task": "flappybird",
+      "steps": 768
+    },
+    {
+      "task": "timberman",
+      "steps": 768
+    },
+    {
+      "task": "flappybird",
+      "steps": 768
+    }
+  ]
+}

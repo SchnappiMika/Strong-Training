@@ -1,0 +1,66 @@
+{
+  "reference_commit": "35ba6fc167d9f3257a1c12d943600b096e79f6b9",
+  "client_seed_supported": false,
+  "configs": [
+    {
+      "group": "full",
+      "seed": 0,
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\configs\\ablations\\full_seed_0.json"
+    },
+    {
+      "group": "full",
+      "seed": 1,
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\configs\\ablations\\full_seed_1.json"
+    },
+    {
+      "group": "full",
+      "seed": 2,
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\configs\\ablations\\full_seed_2.json"
+    },
+    {
+      "group": "without_calibration",
+      "seed": 0,
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\configs\\ablations\\without_calibration_seed_0.json"
+    },
+    {
+      "group": "without_calibration",
+      "seed": 1,
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\configs\\ablations\\without_calibration_seed_1.json"
+    },
+    {
+      "group": "without_calibration",
+      "seed": 2,
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\configs\\ablations\\without_calibration_seed_2.json"
+    },
+    {
+      "group": "without_history",
+      "seed": 0,
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\configs\\ablations\\without_history_seed_0.json"
+    },
+    {
+      "group": "without_history",
+      "seed": 1,
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\configs\\ablations\\without_history_seed_1.json"
+    },
+    {
+      "group": "without_history",
+      "seed": 2,
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\configs\\ablations\\without_history_seed_2.json"
+    },
+    {
+      "group": "latent_sac",
+      "seed": 0,
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\configs\\ablations\\latent_sac_seed_0.json"
+    },
+    {
+      "group": "latent_sac",
+      "seed": 1,
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\configs\\ablations\\latent_sac_seed_1.json"
+    },
+    {
+      "group": "latent_sac",
+      "seed": 2,
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\configs\\ablations\\latent_sac_seed_2.json"
+    }
+  ]
+}

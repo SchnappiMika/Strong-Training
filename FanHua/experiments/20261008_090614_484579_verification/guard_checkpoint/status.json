@@ -1,0 +1,10 @@
+{
+  "stage": 0,
+  "stage_steps": 4,
+  "global_steps": 4,
+  "episodes": 2,
+  "last_checkpoint_step": 4,
+  "status": "failed",
+  "phase": "online_train",
+  "error": "RuntimeError: Timberman policy regression detected; checkpoint retained for repair"
+}

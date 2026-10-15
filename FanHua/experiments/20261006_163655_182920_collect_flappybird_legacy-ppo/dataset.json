@@ -1,0 +1,35 @@
+{
+  "status": "stopped_after_sufficient_smoke_data_completed_episodes_preserved",
+  "task": "flappybird",
+  "behavior": "legacy-ppo",
+  "transitions": 2400,
+  "episodes": [
+    {
+      "episode": 0,
+      "steps": 800,
+      "return": 620.6295758675761,
+      "terminated": false,
+      "truncated": true,
+      "score": null
+    },
+    {
+      "episode": 1,
+      "steps": 800,
+      "return": 609.7752812220755,
+      "terminated": false,
+      "truncated": true,
+      "score": null
+    },
+    {
+      "episode": 2,
+      "steps": 800,
+      "return": 621.9055830323599,
+      "terminated": false,
+      "truncated": true,
+      "score": null
+    }
+  ],
+  "client_seed_supported": false,
+  "reason": "Preserved completed data is sufficient for initial offline pretraining; stopped original 20-episode budget to evaluate candidate sooner",
+  "incomplete_tail_in_protocol_only": true
+}

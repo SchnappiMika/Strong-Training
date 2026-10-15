@@ -1,0 +1,6 @@
+episode,task,steps,raw_return,learning_return,score,terminated,truncated
+0,flappybird,300,22293.827764937876,222.93827764937913,,False,True
+1,flappybird,300,22952.782362980673,229.52782362980645,,False,True
+2,flappybird,300,22977.69621433028,229.77696214330282,,False,True
+3,flappybird,300,22856.200187017257,228.5620018701725,,False,True
+4,flappybird,300,22731.620410228366,227.31620410228365,,False,True

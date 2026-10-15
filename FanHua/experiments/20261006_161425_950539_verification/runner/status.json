@@ -1,0 +1,10 @@
+{
+  "stage": 1,
+  "stage_steps": 4,
+  "global_steps": 16,
+  "episodes": 8,
+  "last_checkpoint_step": 14,
+  "status": "failed",
+  "client_seed_supported": false,
+  "error": "ValueError: Representation warmup requires samples for both actions"
+}

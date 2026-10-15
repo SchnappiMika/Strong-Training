@@ -1,0 +1,24 @@
+{
+  "status": "completed_policy_repair_requires_real_evaluation",
+  "source": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261006_164133_399330_offline_pretrain\\checkpoints\\latest.pt",
+  "teacher_paths": {
+    "flappybird": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\flappybird_rl\\logs\\ppo_20260925_174115_model.pt",
+    "timberman": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261006_161456_139334_timber_first_smoke\\checkpoints\\latest.pt"
+  },
+  "teacher_sha256": {
+    "flappybird": "ea5e5d22e4518ccb7a6dd2bb9671afc785af2a029412de0be6bef374c3457ceb",
+    "timberman": "6f03a3d9df93eadd4ff755108bc8923fa1a04db9cef3f2ac988237f15b2413ff"
+  },
+  "training_states": {
+    "flappybird": 2400,
+    "timberman": 1329
+  },
+  "supervised_updates": 5000,
+  "sac_updates_unchanged": 3000,
+  "critic_transitions_relabelled": false,
+  "teacher_models_used_at_inference": false,
+  "teacher_agreement": {
+    "flappybird": 0.9870833158493042,
+    "timberman": 0.9872084259986877
+  }
+}

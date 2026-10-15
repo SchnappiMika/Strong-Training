@@ -1,0 +1,10 @@
+{
+  "stage": 0,
+  "stage_steps": 0,
+  "global_steps": 0,
+  "episodes": 0,
+  "last_checkpoint_step": 0,
+  "status": "failed",
+  "phase": "online_train",
+  "error": "RuntimeError: Initial policy fails Timberman regression diagnostic"
+}

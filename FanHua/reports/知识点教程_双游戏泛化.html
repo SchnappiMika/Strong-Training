@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>从零理解双游戏泛化训练</title>
+<style>
+:root{--bg:#07111f;--panel:#101e31;--panel2:#14263d;--line:#294361;--text:#e9f1fb;--muted:#a7bad0;--cyan:#59d8ff;--green:#67e3a2;--yellow:#ffd166;--orange:#ff9e68;--red:#ff7b8a;--purple:#c6a5ff;--shadow:0 18px 50px #0004;--radius:18px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 10% 0%,#173453 0,#07111f 42%),var(--bg);color:var(--text);font:16px/1.75 system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif}a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:1180px;margin:auto;padding:0 24px}.hero{padding:72px 0 44px;background:linear-gradient(135deg,#0c2640cc,#0b1729aa),radial-gradient(circle at 85% 30%,#284d7799,transparent 38%);border-bottom:1px solid var(--line)}.eyebrow{color:var(--green);font-weight:700;letter-spacing:.12em;font-size:.82rem;text-transform:uppercase}.hero h1{font-size:clamp(2.1rem,5vw,4.4rem);line-height:1.12;max-width:900px;margin:12px 0 18px}.hero p{font-size:1.15rem;max-width:860px;color:var(--muted);margin:0}.hero-grid{display:grid;grid-template-columns:1.5fr .9fr;gap:28px;align-items:end}.status{background:#0b1728dd;border:1px solid #3b678e;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}.status strong{font-size:2.2rem;color:var(--green);display:block}.status small{color:var(--muted)}.toc{position:sticky;top:0;z-index:5;background:#07111fe8;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.toc .wrap{display:flex;gap:8px;overflow:auto;padding-top:11px;padding-bottom:11px}.toc a{white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:6px 13px;color:var(--muted);font-size:.9rem}.toc a:hover{border-color:var(--cyan);color:var(--text);text-decoration:none}main{padding:38px 0 86px}section{scroll-margin-top:74px;margin:34px 0 72px}h2{font-size:2rem;line-height:1.2;margin:0 0 14px}h3{font-size:1.35rem;margin:28px 0 8px;color:#f5f9ff}h4{margin:18px 0 6px;color:var(--cyan)}.lead{font-size:1.08rem;color:#d9e6f5;max-width:900px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card,.callout,.quiz,.demo{background:linear-gradient(145deg,#12243a,#0e1a2b);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}.card p:last-child,.callout p:last-child{margin-bottom:0}.callout{border-color:#3d7191;background:linear-gradient(135deg,#12304a,#101d30)}.callout.green{border-color:#39785f;background:linear-gradient(135deg,#12382f,#101d30)}.callout.yellow{border-color:#806b34;background:linear-gradient(135deg,#3c3017,#151d2d)}.muted{color:var(--muted)}.small{font-size:.9rem;color:var(--muted)}.tag{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--muted);font-size:.82rem;margin:2px}.pill{display:inline-block;padding:4px 10px;border-radius:999px;background:#1b3651;color:#c9e8ff;font-size:.84rem}.formula{font-family:Georgia,"Times New Roman",serif;color:#d9f2ff;font-size:1.14rem;background:#081321;border:1px solid #23445f;border-radius:12px;padding:14px 18px;display:block;overflow:auto}.code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#081321;color:#ccecff;border-radius:9px;padding:2px 6px}.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:22px 0}.node{padding:14px 16px;background:#172f49;border:1px solid #39708e;border-radius:14px;text-align:center;min-width:135px;position:relative}.node b{display:block;color:#fff}.node span{font-size:.82rem;color:var(--muted)}.arrow{color:var(--cyan);font-size:1.5rem}.node.pulse{animation:pulse 2.4s infinite}.node:nth-child(3n){animation-delay:.5s}.node:nth-child(5n){animation-delay:1s}@keyframes pulse{0%,100%{box-shadow:0 0 0 0 #59d8ff22}50%{box-shadow:0 0 0 9px #59d8ff11}}.svgbox{background:#081522;border:1px solid var(--line);border-radius:16px;padding:10px;overflow:hidden}.svgbox svg{display:block;width:100%;height:auto}.caption{text-align:center;color:var(--muted);font-size:.88rem;margin-top:8px}.switcher{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.btn{cursor:pointer;border:1px solid var(--line);background:#142941;color:var(--text);border-radius:10px;padding:9px 14px;font:inherit}.btn:hover,.btn.active{border-color:var(--cyan);background:#1a4260}.btn.good.active{border-color:var(--green);background:#173f37}.btn.warn.active{border-color:var(--yellow);background:#4a3b1a}.output{min-height:86px;padding:16px;border:1px dashed #42647f;border-radius:12px;color:#d9ebf8;background:#081522}.game-state{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}.game-box{min-height:198px;border-radius:16px;border:1px solid #355e7d;background:#0c2136;position:relative;overflow:hidden}.bird{position:absolute;left:24%;top:44%;font-size:2.2rem;transition:top .35s ease}.pipe{position:absolute;right:18%;width:38px;background:#56c58a;border:2px solid #2d815d}.pipe.top{top:0;height:37%}.pipe.bottom{bottom:0;height:29%}.tree{height:172px;position:relative;display:flex;align-items:flex-end;justify-content:center}.trunk{width:45px;height:140px;background:linear-gradient(90deg,#8b5a36,#c78c4e,#754629);border-radius:12px 12px 0 0}.branch{position:absolute;width:74px;height:28px;background:#5f8f58;border-radius:25px;top:52px}.branch.left{left:18%;transform:rotate(-14deg)}.branch.right{right:18%;transform:rotate(14deg)}.game-label{position:absolute;top:10px;left:12px;color:#d9efff;font-size:.85rem}.meter{height:13px;background:#0a1523;border-radius:999px;overflow:hidden;border:1px solid #36516b}.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--green));transition:width .5s}.legend{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.9rem;margin-top:8px}.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;background:var(--cyan)}.legend span:nth-child(2)::before{background:var(--green)}.legend span:nth-child(3)::before{background:var(--yellow)}details{border:1px solid var(--line);border-radius:13px;background:#0d1d30;margin:10px 0;padding:0 15px}summary{cursor:pointer;padding:13px 0;font-weight:700;color:#eaf4ff}details p,details ul{margin-top:0}.timeline{position:relative;margin:24px 0;padding-left:28px}.timeline::before{content:"";position:absolute;left:8px;top:4px;bottom:4px;width:2px;background:linear-gradient(var(--cyan),var(--green),var(--purple))}.event{position:relative;margin:0 0 20px}.event::before{content:"";position:absolute;left:-25px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px #0b2235}.event h4{margin:0}.event p{margin:3px 0;color:var(--muted)}table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.94rem}th,td{border-bottom:1px solid var(--line);padding:11px 10px;text-align:left;vertical-align:top}th{color:#cfeeff;background:#12263b}td{color:#d7e3ef}tr:hover td{background:#102238}ul{padding-left:1.2em}.check{display:flex;gap:10px;align-items:flex-start;margin:9px 0}.check::before{content:"✓";color:var(--green);font-weight:800}.quiz button{margin:5px 5px 5px 0}.quiz-result{min-height:28px;color:var(--yellow);font-weight:700}.slider-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.slider-row input{accent-color:var(--cyan);min-width:240px}.bar-row{display:grid;grid-template-columns:110px 1fr 65px;gap:10px;align-items:center;margin:8px 0}.bar{height:19px;background:#0a1523;border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--orange),var(--yellow));transition:width .35s}.footer{border-top:1px solid var(--line);padding:30px 0 60px;color:var(--muted)}.note{font-size:.92rem;color:var(--muted);border-left:3px solid var(--purple);padding-left:14px}.danger{color:#ffb4bb}.success{color:#9af0c3}@media(max-width:780px){.hero-grid,.grid,.grid3,.game-state{grid-template-columns:1fr}.hero{padding-top:46px}.wrap{padding:0 16px}.flow{justify-content:flex-start}.arrow{transform:rotate(90deg)}table{display:block;overflow:auto;white-space:nowrap}.bar-row{grid-template-columns:90px 1fr 52px;font-size:.88rem}}@media print{body{background:white;color:#111}.hero,.toc{background:white;color:#111}.hero p,.muted,.small,.caption,td{color:#444}.card,.callout,.demo,.quiz,.svgbox{box-shadow:none;background:#fff;border-color:#aaa}.toc{position:static}.toc a{color:#222;border-color:#aaa}.btn{display:none}section{break-inside:avoid}.footer{color:#444}}
+</style>
+<style>
+.code{overflow-wrap:anywhere;word-break:break-word}button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}.svgbox text{font-family:"Microsoft YaHei",system-ui,sans-serif}.quiet .pulse{animation:none}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.node.pulse{animation:none}.bird,.bar i,.meter i{transition:none}}@media print{h2,h3,h4,.node,.status strong,.tag{color:#111}.node,details{background:white;border-color:#999}.code{background:#eee;color:#111}.svgbox{background:#081522;print-color-adjust:exact}.grid,.grid3{grid-template-columns:1fr}.status{background:white;box-shadow:none}.hero .eyebrow{color:#333}.toc{display:none}section{break-inside:auto}.card{break-inside:avoid}}
+</style>
+<style>
+:root{color-scheme:light;--bg:#fff;--panel:#fff;--panel2:#f7f7f7;--line:#d1d5db;--text:#1f2937;--muted:#4b5563;--cyan:#12618a;--green:#216e43;--yellow:#855900;--orange:#a64916;--red:#b42338;--purple:#7043a3;--shadow:none}
+body,.hero,.toc{background:#fff;color:var(--text)}
+.hero{padding-top:48px}.hero h1{font-size:clamp(2rem,4.5vw,3.4rem)}
+.card,.callout,.quiz,.demo,.status,details,.node,.game-box,.svgbox,.output{background:#fff;border-color:var(--line);box-shadow:none}
+.callout,.callout.green,.callout.yellow{background:#fff}.callout{border-left:4px solid var(--cyan)}.callout.green{border-left-color:var(--green)}.callout.yellow{border-left-color:var(--yellow)}
+h2,h3,.lead,.node b,summary,.output,.game-label{color:var(--text)}h4{color:var(--cyan)}
+.formula,.code,.pill{background:#f7f7f7;color:var(--text);border-color:var(--line)}
+.btn{background:#fff;color:var(--text);border-color:#b5bdc6}.btn:hover,.btn.active,.btn.good.active,.btn.warn.active{background:#f2f2f2;color:var(--text);border-color:var(--cyan)}
+th{background:#f5f5f5;color:var(--text)}td{color:var(--text)}tr:hover td{background:#fafafa}
+.bar,.meter{background:#eee;border-color:var(--line)}.event::before{box-shadow:0 0 0 4px #fff}
+.danger{color:var(--red)}.success{color:var(--green)}
+.svgbox text{fill:#253140!important}.svgbox rect{fill:#fafafa!important;stroke:#73808c!important}.svgbox path[marker-end]{stroke:#536678!important}.svgbox marker path{fill:#536678!important}
+.walkthrough{border:1px solid var(--line);border-radius:14px;padding:20px;margin:18px 0;background:#fff}.walkthrough h4{margin-top:0}.walkthrough ol{padding-left:1.4em}.walkthrough li{margin:12px 0}
+.lesson-progress{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.lesson-progress span{padding:5px 10px;border:1px solid var(--line);border-radius:6px}.lesson-progress .current{background:#f0f0f0;border-color:var(--cyan);font-weight:700}
+@media(max-width:780px){table{white-space:normal}th,td{min-width:135px}.walkthrough{padding:16px}.slider-row input{min-width:0;width:min(240px,100%)}}
+@media print{body,h2,h3,h4{color:#111}.svgbox{background:#fff}.node.pulse{animation:none}.lesson-progress{display:none}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">FanHua · 入门教材</div>
+      <h1>从零理解：一个模型如何学会两款游戏</h1>
+      <p>这份资料把强化学习、论文中的 Cal-LAICA 思路、WemiEnv 接口和本次真实训练串在一起。你可以按顺序阅读，也可以点击按钮，把抽象概念变成一次可见的决策。</p>
+      <div class="switcher"><button class="btn" id="motion-toggle" aria-pressed="false">暂停装饰动画</button><button class="btn" id="print-tutorial">打印 / 保存为 PDF</button></div>
+    </div>
+    <div class="status"><span class="small">本次任务的最终对象</span><strong>1 个共享模型</strong><span class="small">同一份 PyTorch checkpoint，在 Flappy Bird 和 Timberman 上分别验收</span></div>
+  </div>
+</header>
+<nav class="toc"><div class="wrap">
+  <a href="#map">学习路线</a><a href="#rl">强化学习基础</a><a href="#shared">共享模型</a><a href="#env">WemiEnv</a><a href="#algorithm">算法</a><a href="#training">训练过程</a><a href="#evaluation">结果</a><a href="#glossary">术语</a>
+</div></nav>
+<main class="wrap">
+<section id="map">
+  <h2>学习路线：从游戏反馈走到最终验收</h2>
+  <p class="lead">不要一上来就背公式。强化学习可以按下面的顺序理解：先知道模型在游戏里做什么，再理解参数怎样改变，最后再看论文为什么要保存旧经验和校准价值。</p>
+  <div class="grid3">
+    <div class="card"><span class="pill">01</span><h3>环境</h3><p>游戏给模型一份<strong>观测</strong>，模型返回一个<strong>动作</strong>，游戏再给<strong>奖励</strong>和是否结束。</p></div>
+    <div class="card"><span class="pill">02</span><h3>模型</h3><p>神经网络用参数把观测变成动作偏好。训练就是用数据调整这些参数。</p></div>
+    <div class="card"><span class="pill">03</span><h3>价值</h3><p>Q 值回答“现在做这个动作，未来大概能得到多少回报”。</p></div>
+    <div class="card"><span class="pill">04</span><h3>任务条件</h3><p>同一个 actor 需要知道当前输入来自哪款游戏，才能解释相同位置的数字。</p></div>
+    <div class="card"><span class="pill">05</span><h3>持续学习</h3><p>切换游戏时保留历史经验，避免刚学会的游戏被新数据冲掉。</p></div>
+    <div class="card"><span class="pill">06</span><h3>论文方法</h3><p>潜在动作表示、双 Q、CQL、价值校准和混合回放共同组成训练组件。</p></div>
+  </div>
+  <div class="callout green"><strong>怎么读：</strong>先读第一、二、三节，再读算法。对公式感到陌生时，可以先看旁边的数值例子。页面中的演示都是教学用的小例子，点击按钮不会连接游戏、读取模型或开始训练。</div>
+  <div class="grid" style="margin-top:18px"><div class="card"><h3>这次读的两篇论文</h3><p><a href="../../文献/Wemi_camera_ready.pdf">WemiEnv: An Open-source Reinforcement Learning Platform for WeChat Mini-Games</a> 讲“怎样把微信游戏变成可交互的强化学习环境”。</p><p><a href="../../文献/AAAI_英文档_蒋奇奇_final_version_no_appendix.pdf">Calibrated Lifelong Reinforcement Learning for Efficient Adaptation to Changing Action Sets</a> 讲“可用动作变化后怎样继续学习、复用旧知识”。</p></div><div class="card"><h3>三种内容用三种方式阅读</h3><p><span class="tag">基础知识</span> 是理解训练所需的数学和算法常识。</p><p><span class="tag">论文内容</span> 是论文的问题、方法、实验和适用条件。</p><p><span class="tag">本次工程</span> 是 FanHua 代码实际做的事情。论文中的实验数字不能拿来充当我们小游戏的成绩。</p></div></div>
+</section>
+
+<section id="rl">
+  <h2>一、强化学习到底在做什么</h2>
+  <p class="lead">可以把模型想成正在练游戏的玩家：不断尝试，观察结果，再调整自己的习惯。我们还使用了教师行为辅助训练，所以这里同时包含“从奖励学习”和“参考已有行为”的部分。</p>
+  <div class="svgbox">
+    <svg viewBox="0 0 900 240" role="img" aria-label="强化学习循环">
+      <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#59d8ff"/></marker></defs>
+      <rect x="30" y="85" width="170" height="70" rx="16" fill="#173552" stroke="#59d8ff"/><text x="115" y="115" text-anchor="middle" fill="#fff" font-size="20">模型 / Agent</text><text x="115" y="140" text-anchor="middle" fill="#a7bad0" font-size="14">根据观测选动作</text>
+      <rect x="370" y="85" width="170" height="70" rx="16" fill="#173d35" stroke="#67e3a2"/><text x="455" y="115" text-anchor="middle" fill="#fff" font-size="20">WemiEnv 游戏</text><text x="455" y="140" text-anchor="middle" fill="#a7bad0" font-size="14">执行动作并更新画面</text>
+      <rect x="710" y="85" width="160" height="70" rx="16" fill="#3d3219" stroke="#ffd166"/><text x="790" y="115" text-anchor="middle" fill="#fff" font-size="20">反馈</text><text x="790" y="140" text-anchor="middle" fill="#a7bad0" font-size="14">奖励、下一观测、done</text>
+      <path d="M205 120 H360" stroke="#59d8ff" stroke-width="3" marker-end="url(#arrow)"/><text x="282" y="105" text-anchor="middle" fill="#a7bad0" font-size="14">动作 action</text>
+      <path d="M545 120 H700" stroke="#59d8ff" stroke-width="3" marker-end="url(#arrow)"/><text x="623" y="105" text-anchor="middle" fill="#a7bad0" font-size="14">reward + obs</text>
+      <path d="M790 174 C790 220 110 220 110 165" fill="none" stroke="#c6a5ff" stroke-width="3" marker-end="url(#arrow)"/><text x="450" y="215" text-anchor="middle" fill="#c6a5ff" font-size="14">重复很多步，逐渐调整参数</text>
+    </svg>
+    <div class="caption">一个时间步的闭环：观测 → 动作 → 游戏反馈 → 下一次决策</div>
+  </div>
+  <div class="walkthrough"><h3>先用一小段 Flappy Bird 理解“学习”</h3><ol><li><strong>看情况：</strong>小鸟快碰到下方管道，程序收到小鸟和管道的位置数字。这些数字是观测。</li><li><strong>做决定：</strong>网络根据当前参数输出一个动作，映射后是 1，也就是拍翅。程序把 1 发给游戏。</li><li><strong>看后果：</strong>游戏执行动作，返回新位置、奖励和是否死亡。只有这一刻才能知道这次动作实际发生了什么。</li><li><strong>记经验：</strong>把“刚才什么情况、做了什么、得到什么、后来怎样”保存下来。经验回放就是以后反复抽这些记录学习。</li><li><strong>调参数：</strong>评分网络学习动作的未来价值；决策网络根据评分和行为指导调整参数，让以后类似情况更倾向于合适动作。</li></ol><p>拍翅没有天然的“永远正确”标签。小鸟太低时拍翅可能有用，太高时拍翅可能撞上方管道，所以网络必须把<strong>情况和动作放在一起</strong>学习。一次存活也不能证明策略学会了，需要连续多步、多局检查。</p></div>
+  <h3>1.1 MDP：把游戏写成五个东西</h3>
+  <p>论文使用马尔可夫决策过程（MDP）描述环境：</p>
+  <span class="formula">M = (S, A, P, R, γ)</span>
+  <div class="grid3">
+    <div class="card"><h4>S：状态空间</h4><p>决策所需的环境情况。例如小鸟位置、管道和速度。模型实际收到的是其中一部分，叫观测；本次收到结构化数字，没有读整张截图。</p></div>
+    <div class="card"><h4>A：动作空间</h4><p>模型能按什么按钮。本次两款游戏都只接受动作 0 或 1，但两个数字在不同游戏里的含义不同。</p></div>
+    <div class="card"><h4>P：转移规律</h4><p>游戏在执行动作后怎样变化。小鸟会下落或上升，树枝会向上移动。</p></div>
+    <div class="card"><h4>R：奖励</h4><p>动作带来的即时反馈。活着、过管道、砍树会贡献不同的奖励。</p></div>
+    <div class="card"><h4>γ：折扣因子</h4><p>未来奖励要不要打折。本次是 0.99，意思是当前奖励和稍后奖励都重要。</p></div>
+    <div class="card"><h4>额外信息：回合结束</h4><p>done 是接口反馈，不是 MDP 五元组的第六个字母。客户端说游戏自然结束时是 terminated；人为达到步数上限时是 truncated。</p></div>
+  </div>
+  <h3>1.2 策略、参数和训练</h3>
+  <p><strong>策略（policy）</strong>就是“在这种状态下怎么选动作”的规则。神经网络里有很多数字，例如权重和偏置，这些数字统称<strong>参数 θ</strong>。训练时，模型根据一批历史数据计算损失，然后用梯度下降改变 θ。</p>
+  <div class="flow"><div class="node pulse"><b>观测 s</b><span>游戏传来的数字</span></div><div class="arrow">→</div><div class="node pulse"><b>网络参数 θ</b><span>当前的行为规律</span></div><div class="arrow">→</div><div class="node pulse"><b>动作偏好</b><span>0 或 1 的选择</span></div><div class="arrow">→</div><div class="node pulse"><b>环境奖励</b><span>告诉模型好不好</span></div></div>
+  <div class="callout"><strong>训练时参数会改变：</strong>模型根据数据算出损失，再调整权重和偏置。最终评估只读取参数，不做反向传播和优化器更新。</div>
+  <h3>1.3 一步、一局、一次更新为什么不一样</h3>
+  <table><thead><tr><th>词</th><th>大白话</th><th>本次例子</th></tr></thead><tbody><tr><td>step / 交互步</td><td>发送一次动作，收回一次反馈</td><td>主线做了 80000 步，不是 80000 局</td></tr><tr><td>episode / 回合</td><td>从 reset 开始，到自然结束或人为截断的一段游戏</td><td>最终每款游戏测 20 局</td></tr><tr><td>update / 更新</td><td>抽取一批数据，计算损失，执行优化器</td><td>同一条经验可能被反复抽到，更新次数不必等于交互步数</td></tr><tr><td>batch / 小批量</td><td>一次更新看的数据数量</td><td>本次 batch_size=64，表示一次用 64 条经验</td></tr></tbody></table>
+  <h3>1.4 奖励和回报：一个是眼前，一个是一段未来</h3>
+  <p>奖励 r 是一步反馈。回报 G 是多步奖励相加；训练常给更远的奖励打折。比如后面三步奖励依次是 1、2、3，折扣因子 γ=0.9，那么现在看它们的价值是 1+0.9×2+0.9²×3=5.23。</p>
+  <div class="demo"><h4>互动：改变你重视未来的程度</h4><label class="slider-row" for="gamma-slider">γ <input id="gamma-slider" type="range" min="0" max="100" value="90"><b id="gamma-label">0.90</b></label><div id="gamma-output" class="output" aria-live="polite">G = 1 + 0.90 × 2 + 0.90² × 3 = 5.23</div><p class="small">γ 越接近 1，越看重远处收益。这里固定三步奖励演示；本次训练 γ=0.99。最终评估报告的 learning_return 是单局处理后奖励的直接和，没有再按 γ 打折。</p></div>
+  <h3>1.5 Q 值为什么重要</h3>
+  <p>Q(s,a) 可以读作：“在状态 s 做动作 a，考虑之后还能得到多少总回报”。如果模型错误地认为某个动作价值很低，它就会少选这个动作，因而更难收集纠正它的数据。这就是论文重点讨论的<strong>价值低估</strong>。</p>
+  <span class="formula">目标回报 ≈ 当前奖励 r + γ × 下一状态的最好价值</span>
+  <p>这里先把策略当成“下一步选自己认为好的动作”。本次 SAC 的精确目标还包含策略采样、终止标记、熵和双 critic，后面的算法节会逐项展开。</p>
+  <div class="grid"><div class="card"><h4>Q(s,a)：先指定第一步</h4><p>“现在处于 s，我先做 a，以后按策略继续玩，大概能拿多少折扣回报？”例如眼前这步拍翅和不拍翅分别值得多少。</p></div><div class="card"><h4>V(s)：按策略平均起来</h4><p>“现在处于 s，按我的策略正常玩，大概能拿多少？”它把不同动作的 Q 按选择概率加权，不额外指定第一步。</p></div></div>
+  <h3>1.6 参数、矩阵和梯度：你说的“调矩阵”在哪里</h3>
+  <p>向量是一排数字，矩阵是很多排数字。比如 x=[小鸟高度, 管道下沿, 上方管道高度] 是一个向量。网络的一层会算 <span class="code">h=ReLU(Wx+b)</span>：矩阵 W 把输入组合成新特征，b 是偏置，ReLU 把负数变成 0。把几层接起来，就得到能表达更复杂规则的神经网络。</p>
+  <p>本次网络输入是 12 个状态数加 2 个任务标签位。共享 backbone 的 Linear 层依次把维度从 14 变到 64、64、64；随后两个输出头分别产生 2 维均值和 2 维标准差信息。它们是<strong>同一个 actor 的输出头</strong>，不是按游戏分别建两个 actor。</p>
+  <p>训练需要一个损失 L 来衡量错误。梯度告诉我们“把某个参数稍微调大，损失会增加还是减少”。最基础的更新写成 <span class="code">w ← w − η×梯度</span>。η 叫学习率，控制每次走多大一步。本次使用 Adam 优化器，它还维护历史梯度统计，因此 checkpoint 必须保存优化器状态。</p>
+  <div class="demo"><h4>互动：亲手调一个参数</h4><p>教学模型只有一个参数 w。希望它对输入 x=1 预测出 2。损失 L=(w−2)²，梯度是 2(w−2)，学习率固定为 0.1。</p><div id="gradient-output" class="output" aria-live="polite">w=0.000，预测=0.000，损失=4.000</div><div class="switcher"><button class="btn" id="gradient-step">执行一次梯度下降</button><button class="btn" id="gradient-reset">回到 w=0</button></div><p class="small">真实模型同时调整很多权重，用的是多种损失和 Adam。这里让你看到“参数被训练改变”确实就是数字在变化。</p></div>
+  <details><summary>反向传播、loss、optimizer 之间是什么关系？</summary><p>前向计算得到预测；loss 把预测和目标变成一个误差数字；反向传播按链式法则求每个参数的梯度；optimizer 根据梯度更新参数。<span class="code">loss.backward()</span> 算梯度，<span class="code">optimizer.step()</span> 改参数。只看游戏画面不会自动改权重。</p></details>
+  <details><summary>观测等于完整状态吗？马尔可夫是什么意思？</summary><p>马尔可夫条件大致是：知道当前完整状态和动作，预测下一步不再需要更久的历史。但实际观测可能少了速度或计时信息。本次 Flappy Bird 只有三个坐标量，不能直接保证完整马尔可夫性；模型能通过测试，也不等于证明当前观测已经包含全部动力学信息。若以后研究更复杂变化，可能需要增加速度、帧堆叠或循环网络。</p></details>
+</section>
+
+<section id="shared">
+  <h2>二、什么叫“一个共享模型”</h2>
+  <p class="lead">最终交付的是一份共享模型：一个 actor、双 Q critic 和一组动作表示组件共同服务两款游戏。切换游戏时，保留模型参数，改变的是任务标签和交互环境。</p>
+  <div class="game-state">
+    <div class="card">
+      <h3>点击切换任务条件</h3>
+      <div class="switcher"><button class="btn game-btn active" data-game="flappybird">Flappy Bird</button><button class="btn game-btn" data-game="timberman">Timberman</button></div>
+      <div id="task-output" class="output">当前任务标签：<b>flappybird</b><br>同一个 actor 读取共享参数，但知道这份观测来自 Flappy Bird。它会在 0：不拍翅 与 1：拍翅之间选择。</div>
+    </div>
+    <div class="card"><div class="game-box" id="game-visual"><span class="game-label">同一套网络，任务条件不同</span><div class="bird">🐦</div><div class="pipe top"></div><div class="pipe bottom"></div></div></div>
+  </div>
+  <div class="svgbox">
+    <svg viewBox="0 0 960 360" role="img" aria-label="共享模型：执行路线与训练组件">
+      <defs><marker id="shared-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#536678"/></marker></defs>
+      <text x="20" y="32" font-size="19">执行动作：两款游戏使用同一个 actor</text>
+      <g text-anchor="middle">
+        <rect x="20" y="65" width="165" height="105" rx="12"/><text x="102" y="99" font-size="19">编码 + 任务标签</text><text x="102" y="127" font-size="15">12 个状态数 + 2 位</text><text x="102" y="151" font-size="14">标明当前游戏</text>
+        <rect x="225" y="65" width="185" height="105" rx="12"/><text x="317" y="99" font-size="20">一个共享 Actor</text><text x="317" y="127" font-size="15">同一组参数 θ</text><text x="317" y="151" font-size="14">输出潜在动作 e</text>
+        <rect x="450" y="65" width="195" height="105" rx="12"/><text x="547" y="99" font-size="19">任务动作原型</text><text x="547" y="127" font-size="15">比较 e 到原型的距离</text><text x="547" y="151" font-size="14">得到动作 0 或 1</text>
+        <rect x="685" y="65" width="250" height="105" rx="12"/><text x="810" y="99" font-size="19">原 WemiEnv 小游戏</text><text x="810" y="127" font-size="15">执行动作，返回真实反馈</text><text x="810" y="151" font-size="14">Flappy Bird / Timberman</text>
+      </g>
+      <path d="M190 118H215 M415 118H440 M650 118H675" fill="none" stroke="#536678" stroke-width="3" marker-end="url(#shared-arrow)"/>
+      <text x="20" y="217" font-size="18">训练组件：参与学习；最终评估不更新参数</text>
+      <g text-anchor="middle">
+        <rect x="20" y="240" width="165" height="92" rx="12"/><text x="102" y="270" font-size="18">当前与历史经验</text><text x="102" y="299" font-size="14">来自真实游戏交互</text>
+        <rect x="225" y="240" width="185" height="92" rx="12"/><text x="317" y="270" font-size="18">双 Critic + 目标副本</text><text x="317" y="299" font-size="14">学习价值，指导 actor</text>
+        <rect x="450" y="240" width="195" height="92" rx="12"/><text x="547" y="270" font-size="18">保守项与价值校准</text><text x="547" y="299" font-size="14">参与 critic 学习目标</text>
+        <rect x="685" y="240" width="250" height="92" rx="12"/><text x="810" y="270" font-size="18">冻结教师的动作建议</text><text x="810" y="299" font-size="14">训练时约束共享 actor</text>
+      </g>
+    </svg>
+    <div class="caption">上排是动作执行顺序；下排列出训练组件。切换游戏时 actor 参数保留，critic 与教师不代替最终 actor 执行游戏动作。</div>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>为什么需要任务标签</h3><p>两个游戏都把动作写成 0 和 1，但 0 在 Flappy Bird 是“不拍翅”，在 Timberman 是一侧砍树。任务标签像一张便签，告诉网络“这些数字属于哪款游戏”。</p></div>
+    <div class="card"><h3>参数到底放在哪里</h3><p>最终文件是 <a href="../experiments/20261008_122246_330413_mainline_shared_model/checkpoints/latest.pt">主线目录中的 checkpoints/latest.pt</a>。它保存权重、优化器状态、熵温度、动作原型、经验回放、阶段和随机数状态，能恢复训练。<span class="code">.pt</span> 与 <span class="code">.ckpt</span> 都只是常用后缀；你同学说的 <span class="code">.checkout</span> 要看实际保存代码，后缀本身不决定算法。</p></div>
+  </div>
+  <h3>2.1 两位 critic 为什么仍然叫一个模型</h3><p>actor 是做决定的人，两个 critic 是训练时从两路估计动作价值的评分器，它们都服务两款游戏。一个完整强化学习模型可以包含多个网络组件；“一份模型”指一套共同学习和保存的 agent，不要求内部只有一个矩阵。部署时动作来自同一个 actor 和任务对应的原型，critic 不作为两款游戏各自的执行者。</p>
+  <h3>2.2 任务标签如何进入矩阵</h3><p>任务标签采用 one-hot：Flappy Bird 是 [1,0]，Timberman 是 [0,1]。把它接到 12 维状态后，网络看到 14 维输入。例如 [0.4,0.6,0.2,0,…,0,1,0] 表示 Flappy Bird；标签换成 [0,1] 时，模型知道前面的数值要按 Timberman 编码解释。</p>
+  <div class="callout"><strong>本次“泛化”的准确位置：</strong>它是两个已知任务上的任务条件共享策略与持续能力保留。任务标签由训练器提供，没有让模型自动识别游戏，也没有让它看到第三款游戏就立即学会。论文里的新动作适应、已知双任务共享、未见环境零样本泛化，是相关但不同的问题。</div>
+  <div class="quiz" data-answer="b"><h3>小测：下面哪个说法正确？</h3><p>A. 两个游戏各有一份最终 actor。<br>B. 两个游戏读取同一个最终 checkpoint，由任务标签帮助共享网络解释输入。<br>C. 评估时会继续更新参数。</p><button class="btn" data-choice="a">选 A</button><button class="btn" data-choice="b">选 B</button><button class="btn" data-choice="c">选 C</button><div class="quiz-result"></div></div>
+</section>
+
+<section id="env">
+  <h2>三、原 WemiEnv 怎样接入模型</h2>
+  <p class="lead">我们没有另造一个游戏系统。FanHua 里的 Python 训练器通过 WebSocket 和原来的微信小游戏通信，微信开发者工具里的客户端仍然是实际环境。</p>
+  <div class="flow"><div class="node"><b>微信小游戏</b><span>原 WemiEnv 客户端</span></div><div class="arrow">⇄</div><div class="node"><b>WebSocket 7891</b><span>传 action / obs / reward</span></div><div class="arrow">⇄</div><div class="node"><b>PyTorch 训练器</b><span>选择动作和更新参数</span></div></div>
+  <h3>3.1 两款游戏的输入和动作</h3>
+  <table><thead><tr><th>项目</th><th>Flappy Bird</th><th>Timberman</th></tr></thead><tbody>
+    <tr><td>原始观测</td><td>3 个数：小鸟高度、管道位置等</td><td>11 棵树各 3 个字段，加玩家方向，共 34 项</td></tr>
+    <tr><td>送入网络</td><td>前 3 项除以 600，其余补零，统一为 12 维</td><td>只编码枝条方向和玩家方向，统一为 12 维</td></tr>
+    <tr><td>动作</td><td>0 不拍翅，1 拍翅</td><td>0 / 1 两侧操作，含义由客户端逻辑决定</td></tr>
+    <tr><td>训练奖励</td><td>客户端原始奖励除以 100</td><td>分数增量，回合结束额外扣 1</td></tr>
+    <tr><td>评估上限</td><td colspan="2">每局最多 3000 步。达到上限叫 truncated，不等于自然死亡。</td></tr>
+  </tbody></table>
+  <div class="game-state">
+    <div class="card"><h3>Flappy Bird 小实验</h3><div class="game-box"><span class="game-label">动作影响下一时刻状态</span><div class="bird" id="demo-bird">🐦</div><div class="pipe top"></div><div class="pipe bottom"></div></div><div class="switcher"><button class="btn" id="flap-up">动作 1：拍翅</button><button class="btn" id="flap-down">动作 0：不拍</button></div><p id="flap-text" class="small">点击动作，观察小鸟位置变化。这里只是帮助理解，不是实际游戏画面。</p></div>
+    <div class="card"><h3>Timberman 小实验</h3><div class="game-box"><span class="game-label">观测树枝 + 玩家方向</span><div class="tree"><div class="branch left"></div><div class="branch right"></div><div class="trunk"></div></div></div><p class="small">网络只保留对决策有用的方向信息。实际客户端还会返回更多字段，但本次没有把坐标直接送入网络。</p></div>
+  </div>
+  <div class="callout yellow"><strong>接口问题为什么会影响训练：</strong>如果编译了错误的微信项目、同时开了两个调试窗口，或客户端断线，训练器拿到的就不是可靠的状态转移。一次 Timberman 客户端未连接的超时后来通过保存 checkpoint、重新编译和恢复解决。</div>
+  <div class="walkthrough"><h3>从游戏数字到网络输入：亲手展开一次编码</h3><p>以下坐标是教学假设值，编码规则来自本次代码。假设 Flappy Bird 返回三个位置数字 [240,360,120]。程序除以 600，得到 [0.4,0.6,0.2]。再补九个 0，形成 12 维状态：</p><span class="formula">s = [0.4, 0.6, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0]</span><p>最后接上 Flappy 的任务标签 [1,0]，形成 actor 的 14 维输入。<strong>归一化</strong>就是把数值调整到较容易学习的尺度，240÷600=0.4 没有改变位置含义；<strong>补零</strong>是为了让两款游戏输入长度相同，不代表九个缺失观测被测成了零；<strong>任务标签</strong>让网络知道这份输入该按哪款游戏解释。</p><p>Timberman 原始观测是 11 组“方向、横坐标、纵坐标”，再加玩家侧别，共 34 项。本次取出 11 个方向和 1 个玩家侧别：没有树枝记 0，两侧分别记 −1 和 1。actor 再聚焦最近两段树枝和玩家侧别，远处方向置零；critic 仍保留 12 维完整编码。聚焦是减少决策输入干扰的工程处理，不是额外代替网络选动作。</p><h4>奖励也要先转换，不能直接把分数当一步奖励</h4><p>假设 Timberman 分数依次为 10、11、11、12。各步增量是 1、0、1。如果每次把累计分数 11、11、12 都当新奖励，就会重复计算前面已经取得的成绩。本次奖励是“分数增量−自然终止标记”，正常砍中一次为 +1，换边未得分为 0，死亡会额外减 1。</p><p>Flappy Bird 的客户端奖励除以 100 后用于学习。例如原始奖励 80 会变成 0.8。最终报告的学习回报是这些处理后奖励的直接和，不能读成“过了 2267 根管道”。不同游戏分别统计，避免把两种计分方式混在一起。</p></div>
+  <h3>3.2 WemiEnv 论文：环境、框架与算法各自负责什么</h3>
+  <p>WemiEnv 论文的贡献是把微信小游戏接到 RL 程序。它包含 JavaScript 客户端、Python WebSocket 服务端和统一接口；reset 是重开游戏，step 是发一个动作并收回反馈。论文提供六类示例：Space Fighter、Flip、2048、Flappy Bird、Timberman 和 Snake，并用 VPG、PPO、DDPG、TD3 等算法展示环境能用于训练。</p>
+  <table><thead><tr><th>层次</th><th>例子</th><th>本次作用</th></tr></thead><tbody><tr><td>环境 / 接口</td><td>WemiEnv；Gymnasium 是另一种环境接口生态</td><td>游戏逻辑和观测反馈继续来自原 WemiEnv，FanHua 适配代码不导入 Gymnasium</td></tr><tr><td>计算框架</td><td>PyTorch、TensorFlow</td><td>本次用 PyTorch 建网络、求梯度和保存参数</td></tr><tr><td>训练算法</td><td>PPO、SAC、CQL、Cal-LAICA</td><td>本次是任务条件潜在 SAC 加 CQL/校准/回放/行为指导的工程组合</td></tr></tbody></table>
+  <p>PyTorch 和 Gymnasium 分属不同层，选择 PyTorch 并不意味着环境接口“过时”。我们采用 PyTorch，保留 WemiEnv 的 reset/step 交互形式，原微信客户端源码不改。</p>
+  <h3>3.3 为什么速度也是研究变量</h3><p>WemiEnv 的游戏按真实时间运行。Python 正在算网络时，小鸟可能还在落、Timberman 的时间条可能还在减。因此“一步游戏反馈”不是固定一帧，延迟、训练计算和保存文件都可能影响结果。WemiEnv 论文的延迟实验在 Space Fighter 和 Flappy Bird 上人为加入 10、20、50、100 毫秒延迟，观察到性能受影响；这些是论文实验设置，不能当成本次测出来的延迟。</p>
+  <div class="callout"><strong>协议里的数字例子：</strong>Timberman 连续反馈累计分数 10、11、12，训练奖励应是 1、1，不能再把 11、12 都算成新增奖励。Flappy Bird 的缩放只改变奖励数值尺度，不把它变成真实过管得分。</div>
+</section>
+
+<section id="algorithm">
+  <h2>四、论文和算法：先懂直觉，再看名字</h2>
+  <h3>4.1 论文到底研究什么</h3>
+  <p>论文题目是“面向变化动作集合的校准持续强化学习”。它研究的是：智能体已经会一批离散动作，训练途中又逐步开放新动作，怎样复用旧知识并快速适应。这里的“泛化”主要指动作集合变化后的持续适应，不等同于所有形式的环境参数泛化。</p>
+  <div class="svgbox"><svg viewBox="0 0 920 210" role="img" aria-label="论文问题链条"><defs><marker id="arrow3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#ff9e68"/></marker></defs><text x="25" y="30" fill="#a7bad0" font-size="15">动作集合扩大后的风险</text><g font-size="16" text-anchor="middle"><rect x="25" y="70" width="145" height="66" rx="13" fill="#3d281e" stroke="#ff9e68"/><text x="97" y="98" fill="#fff">映射改变</text><text x="97" y="120" fill="#a7bad0" font-size="12">潜在位置含义变了</text><rect x="205" y="70" width="145" height="66" rx="13" fill="#3d281e" stroke="#ff9e68"/><text x="277" y="98" fill="#fff">Q 值低估</text><text x="277" y="120" fill="#a7bad0" font-size="12">好动作被打低分</text><rect x="385" y="70" width="145" height="66" rx="13" fill="#3d281e" stroke="#ff9e68"/><text x="457" y="98" fill="#fff">少探索</text><text x="457" y="120" fill="#a7bad0" font-size="12">更难得到纠正数据</text><rect x="565" y="70" width="145" height="66" rx="13" fill="#3d281e" stroke="#ff9e68"/><text x="637" y="98" fill="#fff">性能下降</text><text x="637" y="120" fill="#a7bad0" font-size="12">多次变化后更严重</text><rect x="745" y="70" width="145" height="66" rx="13" fill="#173d35" stroke="#67e3a2"/><text x="817" y="98" fill="#fff">校准 + 回放</text><text x="817" y="120" fill="#a7bad0" font-size="12">保住旧知识</text></g><path d="M175 103 H195 M355 103 H375 M535 103 H555 M715 103 H735" stroke="#ff9e68" stroke-width="3" marker-end="url(#arrow3)"/></svg><div class="caption">论文的因果链：动作映射变化可能让价值函数低估，低估又会阻止策略探索。</div></div>
+  <div class="walkthrough"><h3>论文的困难：为什么新按钮出现，旧经验也可能变难用</h3><p>设想游戏最初只有“慢走、快走”两个按钮，网络先输出坐标 e，再按映射选按钮。以后增加“冲刺”，动作坐标的划分发生变化，原来某个 e 代表快走，现在可能代表冲刺。评分器如果仍按旧经验理解 e，就可能给新行为错误的分数。</p><p>低估会形成循环：新动作实际很好 → 评分器却觉得很差 → 策略很少选择它 → 收不到足够的新反馈 → 错误评价难以纠正。论文用参考价值参与校准，并用历史与当前经验共同学习，尝试减少这种适应障碍。</p><p>本次两款游戏都固定为两个动作，没有逐阶段开放新按钮。我们借鉴的是表示、价值稳定和经验复用方法，再增加任务标签适配跨游戏。由此得到的是已知双任务的共享策略；不能直接套用论文的动作扩展实验结论。</p></div>
+  <h3>4.2 潜在动作表示：把“按钮”变成坐标</h3>
+  <p>潜在空间就是网络内部的一块数字坐标空间，本身不是游戏画面。LAICA 先让策略在这里选位置 <span class="code">e</span>，再把它映射成真实动作 <span class="code">a</span>。可以理解为“先在地图选点，再看这个点离哪个按钮更近”。</p>
+  <span class="formula">eₜ ~ β(· | sₜ)，　aₜ = φ(eₜ)</span>
+  <div class="grid"><div class="card"><h4>β：表示策略</h4><p>根据状态在潜在空间里选一个位置。当前代码里的 shared actor 就承担了这部分。</p></div><div class="card"><h4>φ：动作映射</h4><p>把潜在位置映射到真实动作。本次用每个任务的两个动作原型做最近邻选择。</p></div><div class="card"><h4>ψ：逆动力学</h4><p>根据状态变化和动作反馈，帮助学习“哪个潜在位置更像这个动作”。</p></div><div class="card"><h4>为什么有用</h4><p>策略的共享部分可以复用，游戏动作的差异放到任务条件和动作原型中处理。</p></div></div>
+  <div class="demo"><h4>互动：二维坐标如何变成动作</h4><p>教学原型固定为 p₀=(−0.6,−0.6)、p₁=(0.6,0.6)。滑块代表 actor 输出的 e，按平方距离选更近的原型。</p><label class="slider-row">e 的横坐标 <input id="latent-x" type="range" min="-100" max="100" value="20"></label><label class="slider-row">e 的纵坐标 <input id="latent-y" type="range" min="-100" max="100" value="-40"></label><div class="svgbox"><svg viewBox="0 0 420 200" role="img" aria-label="二维潜在动作示意"><path d="M20 100H400M210 15V185" stroke="#294361"/><circle cx="105" cy="150" r="15" fill="#ff9e68"/><text x="105" y="179" text-anchor="middle" fill="#eee" font-size="13">动作 0</text><circle cx="315" cy="50" r="15" fill="#67e3a2"/><text x="315" y="30" text-anchor="middle" fill="#eee" font-size="13">动作 1</text><circle id="latent-point" cx="245" cy="134" r="9" fill="#59d8ff"/><text x="23" y="24" fill="#afc1d5" font-size="13">e 在移动；动作映射按距离选择</text></svg></div><div id="latent-output" class="output" aria-live="polite"></div><p class="small">这两个坐标是教学值，不是最终 checkpoint 的原型值。真实原型先学习，再冻结；历史经验中的动作表示要保持一致，不能随意换坐标。</p></div>
+  <h3>先认识 SAC：做决定时兼顾价值和探索</h3>
+  <p>SAC（Soft Actor-Critic）是一类 actor-critic 算法。actor 提出动作，critic 评价动作。探索是尝试可能还没把握的动作；利用是优先执行当前觉得好的动作。完全不探索，会一直重复早期的错误偏好；一直随机，又难以稳定游戏。</p>
+  <p><strong>熵 H</strong>描述策略有多分散。例如两个动作概率是 0.5/0.5，比 0.99/0.01 更不确定。本次 actor 用高斯分布在连续潜在空间采样，tanh 把向量压到 (−1,1)。熵温度 α 控制多重视这种探索倾向。训练时随机采样；评估时用潜在均值映射动作，所以评估策略是确定性的。</p>
+  <span class="formula">Actor 最小化：平均 [α log π(e|s) − min(Q₁(s,e), Q₂(s,e))] + 行为约束</span>
+  <p>读这式子时先看方向：降低损失会鼓励更高价值，并保留一定探索。log π 是动作表示的对数概率，α 是可学习的权重。“loss 变成负数”不一定出错；它也不等于游戏成绩变差。</p>
+  <h3>双 Q 和目标网络：评分器也要稳定</h3><p>双 Q 是两个独立评分器，训练和 actor 目标里取较小值，减少一条评分路径偶尔高估造成的乐观偏差。目标网络是 critic 的缓慢副本，用来生成下一步学习目标，避免双方一起剧烈变化。本次 τ=0.005，软更新写成 target ← 0.995×旧 target + 0.005×当前 critic。例如旧值 8、当前值 10，更新后是 8.01。</p>
+  <h3>4.3 CQL、Cal-QL 和 Cal-LAICA 的区别</h3>
+  <div class="grid3"><div class="card"><h4>CQL：保守 Q 学习</h4><p>离线数据不覆盖所有动作时，CQL 用保守项压低不可靠的动作价值，减少模型“自信地瞎猜”。</p></div><div class="card"><h4>Cal-QL：价值校准</h4><p>除了保守，还用参考策略价值作为下界，避免新策略由于估计误差被评价得过低。</p></div><div class="card"><h4>Cal-LAICA</h4><p>把价值校准放进潜在动作表示空间，并配合旧经验和当前经验的混合回放，服务动作集合持续变化。</p></div></div>
+  <p>“保守”和“防止低估”同时出现，是因为要控制两种错误：数据外动作可能被盲目高估，有用动作又可能被保守项压得过低。校准在保守目标里引入参考价值；它依赖参考数据质量，不能把差教师自动变成好教师。</p>
+  <span class="formula">论文校准正则示意：R = E[max(Q(s,e), V<sup>μ</sup>(s))] − E<sub>数据动作</sub>[Q(s,e)]</span>
+  <p>μ 是参考行为策略；E 表示对多条数据取平均。论文希望减少低估，本次代码通过损失中的 max 分支实现。<strong>它没有在推理时把所有 Q 硬改成某个下界，也没有保证每条 Q 在每一步都大于参考值。</strong>最终动作依然由 actor 和原型映射产生。</p>
+  <div class="demo"><h4>互动：下界究竟替换哪里</h4><label class="slider-row">策略候选 Q <input id="cal-q" type="range" min="-5" max="15" value="3"></label><label class="slider-row">参考回报 <input id="cal-bound" type="range" min="-5" max="15" value="6"></label><div id="cal-output" class="output" aria-live="polite"></div><p class="small">max 的结果进入正则项，不直接改写 critic 的输出。Q 低于下界时，这个候选分支对原 Q 的局部梯度为 0；Q 高于下界时才继续由 Q 分支传梯度。真实 CQL 还做 logsumexp、密度校正和数据 Q 相减，不能把这个小算式当完整训练器。</p></div>
+  <h3>TD 与 MC：两个产生学习目标的方法</h3><p>TD（时序差分）用“当前真实奖励 + 下一步估计值”构造目标。若 r=1、γ=0.99、下一步 Q=10，暂时忽略熵，那么目标是 10.9；现在预测 8，就用 (8−10.9)² 衡量误差。MC（蒙特卡洛回报）则把一整段实际奖励从后向前累计，例如 γ=0.9、奖励 [1,1,0]，从第一步看回报是 1.9。</p>
+  <div class="callout yellow"><strong>自然终止和截断在训练中不一样：</strong>真死亡以后没有下一步，TD 目标不继续加未来值。3000 步人为停下时游戏本来还能继续，TD 保留下一状态估计，这叫 bootstrap（用估计补上没观测到的后续）。本次只让真正终止的完整轨迹提供 valid_bound；截断和断线片段不被假装成可靠 MC 下界。</div>
+  <h3>4.4 OORB：为什么保存旧经验</h3>
+  <p>OORB 是 Offline-Online Replay Buffer。历史池像长期记忆，在线池像刚发生的事情。切换任务或阶段时，把在线池转入历史池，再清空当前池；训练时按比例混合采样。本次配置历史经验采样概率为 0.25。</p>
+  <div class="demo"><h3>滑块演示：历史经验比例</h3><div class="slider-row"><input id="history-slider" type="range" min="0" max="100" value="25"><b id="history-value">25%</b><span class="muted">历史池采样概率</span></div><div class="bar-row"><span>历史经验</span><div class="bar"><i id="history-bar" style="width:25%"></i></div><b id="history-label">25%</b></div><div class="bar-row"><span>当前经验</span><div class="bar"><i id="online-bar" style="width:75%;background:linear-gradient(90deg,#59d8ff,#67e3a2)"></i></div><b id="online-label">75%</b></div><p class="small">历史比例太低，切换后容易忘记；太高，又可能跟不上当前游戏。0.25 是本次工程配置，不是论文对所有任务的固定答案。</p></div>
+  <div class="walkthrough"><h3>把容易混淆的四种作用分开</h3><table><thead><tr><th>组件</th><th>针对的问题</th><th>一个具体例子</th></tr></thead><tbody><tr><td>历史回放</td><td>更新时旧任务数据越来越少</td><td>现在玩 Timberman，一批 64 条数据平均约 16 条来自历史、48 条来自当前池，旧 Flappy 经验仍可能参与更新。比例是采样概率，单批不保证恰好 16 条，也不保证历史全来自另一款游戏。</td></tr><tr><td>CQL 保守项</td><td>没充分试过的候选被错误打高分</td><td>某个潜在动作几乎没出现在数据中，Q 却估计成 100；候选正则帮助抑制缺少依据的高估。它不是遇到新动作就永远禁止尝试。</td></tr><tr><td>价值校准</td><td>有用策略候选被保守项继续压低</td><td>参考回报为 6、候选 Q 为 3 时，损失分支用 max(3,6)=6，避免该候选在这个分支继续按 Q=3 被压低。TD 等其他分支仍更新 critic，输出不会瞬间变成 6。</td></tr><tr><td>行为约束</td><td>策略输出危险动作，早期数据不够可靠</td><td>教师对当前状态建议提前换边，学生输出更靠近该动作的原型会受到较小监督惩罚。它直接作用于 actor，和校准 critic 的价值是不同环节。</td></tr></tbody></table><p>这些组件一起启用，不等于已经知道每个都提高了成绩。要分别判断贡献，需要消融：其他条件不变，只关闭某个组件，再独立训练、评估比较。本次共享主线没有完成这种对照。</p></div>
+  <h3>4.5 本次代码怎样把论文思想迁移过来</h3>
+  <table><thead><tr><th>论文或算法思想</th><th>FanHua 中的对应实现</th><th>需要诚实说明的差异</th></tr></thead><tbody>
+    <tr><td>潜在动作表示</td><td>2 维 tanh 潜在向量，两个动作原型，最近邻映射</td><td>当前两款游戏固定都是二动作，不是论文的动作集合逐阶段扩展实验</td></tr>
+    <tr><td>双 Q / SAC</td><td>两个 critic、目标网络、熵温度 alpha、软更新</td><td>用于共享游戏策略的工程实现</td></tr>
+    <tr><td>CQL / 价值校准</td><td>随机、当前状态策略、下一状态策略生成三组候选，统一在当前状态评价；完整真终止轨迹 MC 是有效下界</td><td>max 仅作用于有效数据的两类策略候选，不作用于随机候选；不能直接套用论文定理</td></tr>
+    <tr><td>OORB</td><td>历史池按任务保留，约 25% 历史采样</td><td>服务的是两个已知任务切换，不是新动作不断加入</td></tr>
+    <tr><td>行为约束</td><td><span class="code">behavior_weight=5.0</span>，训练时约束 actor 接近行为动作</td><td>这是为 WemiEnv 加的工程扩展，不是论文原始损失项</td></tr>
+  </tbody></table>
+  <div class="callout"><strong>最重要的边界：</strong>这次工作是“参考论文方法，做一个跨两款已知游戏的共享模型工程扩展”。它不应被汇报成论文代码的逐行复现，也不应被夸大成已经证明对任意未见游戏的零样本泛化。</div>
+  <h3>4.6 教师、预训练、微调分别指什么</h3><p>教师是已经保存的行为模型，对一批状态给出动作建议。它与课题组老师这个称呼不同。预训练是先用已有离线数据建立起点；微调是保留起点参数，在新的数据和目标上继续更新。本次使用旧 PPO 的 Flappy Bird 行为和已验证的 Timberman 行为作为训练指导，最终只部署学生共享 actor。</p>
+  <p>行为约束由交叉熵与原型距离的均方误差组成：交叉熵鼓励选到教师建议的动作，均方误差把潜在均值拉近对应原型。它的权重 5.0 影响更新方向。强指导可能提高稳定性，也可能限制学生超越教师，当前没有无指导消融来确认各组件独立贡献。</p>
+  <details><summary>交叉熵、MSE、KL、logsumexp 怎样理解？</summary><p><strong>交叉熵 CE：</strong>给正确动作的概率太小会受更大惩罚，单个目标的核心是 −log(正确动作概率)。目标概率从 0.1 增到 0.9，惩罚就减小。<strong>MSE：</strong>差值平方后平均，例如预测 2、目标 3，平方误差为 1；预测 0 则为 9。</p><p><strong>KL 散度：</strong>度量两个概率分布的偏离程度，原型预热里用它约束逆动力学的高斯表示，避免分布随意漂走，它不是一般意义的对称距离。<strong>logsumexp：</strong>对候选值先指数、相加、取对数，像平滑版的最大值；大候选贡献更大。CQL 候选还做概率密度修正，因此不能把它当作简单平均。</p></details>
+  <p class="note">论文参考价值是策略期望值；本次用完整轨迹的 MC 回报作估计。单条回报存在随机性，不是知道真实期望价值的“标准答案”。正则项是否有效，需要实测和对照。</p>
+  <h3>4.7 论文实验怎样支撑它的结论</h3><table><thead><tr><th>论文设计</th><th>读这部分时看什么</th></tr></thead><tbody><tr><td>Four Rooms、Crossing、Dist Shift、Empty Maze</td><td>四类迷宫，观察动作集合变化后的回报恢复；正文一处写 three tasks，但图 5/7 展示四类，应结合图和附录阅读</td></tr><tr><td>8 个执行器的组合，共 2<sup>8</sup>=256 动作</td><td>排版上标容易被文本抽取误读为 28；附录分组为 51、51、51、51、52</td></tr><tr><td>5 个阶段逐步增加动作和目标</td><td>不是每次换成一款不同游戏；曲线竖线标记变化时刻</td></tr><tr><td>五个随机种子</td><td>均值曲线加标准差阴影，检查效果是否只依赖一次训练</td></tr><tr><td>对照：重初始化、专家数据、原 LAICA、持续 Cal-QL</td><td>比较从头训练、数据质量和持续适应方式</td></tr><tr><td>消融：去校准、去 OORB</td><td>一次只改一个组件，判断该组件是否贡献了效果</td></tr></tbody></table><p>论文报告 Cal-LAICA 在新动作加入后的恢复更平滑；Four Rooms 中前两次变化后约 200、400 episode 停止 Q 值下降，LAICA 首次约 1000 episode，之后更困难。这些是论文中的分析，不能套成本次游戏的恢复时间。</p>
+  <details><summary>遗憾界、Bellman 误差、函数类这些理论词是什么意思？</summary><p>regret（遗憾）是每一轮“最优策略价值减当前策略价值”再累计。Bellman 误差衡量 Q 对“当前奖励加后续价值”是否自洽；误差转移系数描述不同策略访问数据的分布下，误差如何传播。函数类 F 是允许使用哪些 Q 函数的集合，rank 描述相关结构复杂度。论文定理的界包含参考策略质量、数据覆盖和函数结构等条件；读成“合理条件下限制适应损失”即可，不能读成“任何神经网络跨游戏一定成功”。这份工作没有计算对应常数或验证定理假设。</p></details>
+  <details><summary>这和推荐系统有什么联系？</summary><p>可以把用户近期行为看成观测，把推荐哪个物品看成动作，把点击、购买或长期满意度看成奖励。新物品加入会让动作集合变化，因此潜在动作和持续适应思想有参考价值。但真实推荐还涉及曝光偏差、延迟反馈与评价方法。本次没有训练推荐系统，小游戏成绩不能当成推荐效果。</p></details>
+</section>
+
+<section id="training">
+  <h2>五、一次训练是怎样发生的</h2>
+  <div class="timeline">
+    <div class="event"><h4>1. 读取观测</h4><p>WemiEnv 从微信客户端收到 obs、reward、done。训练器检查类型、长度和数值范围，防止错误项目混入。</p></div>
+    <div class="event"><h4>2. 选择动作</h4><p>共享 actor 读取 12 维状态和任务标签，产生潜在动作；动作原型把它变成 0 或 1。</p></div>
+    <div class="event"><h4>3. 保存这条经验，等边界时入池</h4><p>state、action、reward、next_state、终止标记先进入当前回合的 pending 列表；回合结束、截断或阶段边界时计算回报并放入在线池。因此首段数据尚未入池时可能只有交互，没有 SAC 更新。</p></div>
+    <div class="event"><h4>4. 更新 critic</h4><p>双 Q critic 学习 TD 目标，同时加入 CQL 候选动作的保守项和校准项。</p></div>
+    <div class="event"><h4>5. 更新 actor</h4><p>actor 根据 critic 的价值和熵目标调整，并在配置启用时加入行为约束。</p></div>
+    <div class="event"><h4>6. 软更新目标网络和保存</h4><p>目标 critic 逐步靠近当前 critic，训练器定期保存 <span class="code">latest.pt</span>，断线时可以从上一个安全点恢复。</p></div>
+  </div>
+  <div class="demo"><h3>点击模拟一步</h3><div class="flow"><div id="sim-state" class="node"><b>观测</b><span>等待</span></div><div class="arrow">→</div><div id="sim-action" class="node"><b>动作</b><span>等待</span></div><div class="arrow">→</div><div id="sim-reward" class="node"><b>奖励</b><span>等待</span></div></div><button class="btn good" id="sim-step">执行下一步</button><button class="btn" id="sim-reset">重置</button><p class="small" id="sim-explain">你会看到一个简化的“状态 → 动作 → 奖励”循环。真实训练还会把这一条经验放入回放池并更新网络。</p></div>
+  <div class="walkthrough" id="worked-update"><h3>完整数值例子：一条经验怎样推动参数变化</h3><p>下面用教学假设值串起整个过程。为便于手算，先忽略 SAC 熵项、CQL 和其他样本，只演示一个 TD 平方误差；真实网络使用多条数据、多个损失和 Adam。</p><ol><li><strong>取得真实转移：</strong>当前状态 s 下选择拍翅，收到奖励 r=1、新状态 s′ 和“未死亡”。记录 (s,动作,1,s′,未终止)。经验是数据，尚不是参数。</li><li><strong>组成学习批次：</strong>回合结束或阶段边界时，这些 pending 记录才入池；池中有足够数据后，从当前池和历史池抽 64 条组成 batch。</li><li><strong>算学习目标：</strong>假设两个目标 critic 对下一步的估计为 10 和 12，先取较小值 10。γ=0.99，因此 y=1+0.99×10=10.9。y 是当前数据与下一步估计组成的目标，不是游戏直接返回的分数。</li><li><strong>算当前误差：</strong>假设当前 critic 预测 Q=8，L=(8−10.9)²=8.41。这个误差告诉评分器当前预测偏低。</li><li><strong>看参数怎样动：</strong>进一步把 Q 简化成单参数 w=8，则梯度为 2(w−10.9)=−5.8。教学学习率 0.1 下，w←8−0.1×(−5.8)=8.58。新误差 (8.58−10.9)²=5.3824，确实变小。</li><li><strong>再更新决策网络：</strong>真实训练随后让 actor 倾向于 critic 评价较高的潜在动作，并兼顾探索和教师动作约束。critic 的 w 改好，不会自动等于 actor 改好，它们分别有优化步骤。</li></ol><p>若本条经验是真的死亡，TD 不再补下一步价值，目标就是当前奖励。如果只是达到人为上限，游戏仍可继续，TD 会保留后续估计。完整自然终止轨迹还能给校准提供 MC 回报；截断片段在本次实现中不提供有效 MC 下界。</p><h4>互动：逐步查看同一条经验</h4><div class="lesson-progress" id="update-progress" aria-label="学习步骤"></div><div class="output" id="update-output" aria-live="polite"></div><div class="switcher"><button class="btn" id="update-prev">上一步</button><button class="btn" id="update-next">下一步</button><button class="btn" id="update-reset">从头查看</button></div><p class="small">这是页面内的教学演示，只改变演示数字。模型文件和真实训练状态不会改变。</p></div>
+  <h3>从简化例子走到真实 SAC 更新</h3><span class="formula">y = r + γ(1−d) × [min(Q₁目标(s′,e′),Q₂目标(s′,e′)) − α log π(e′|s′)]</span><p>r 是这一步真实奖励；d 是自然终止标记，真死亡为 1；γ 是未来打折系数；e′ 是策略在下一状态采样的潜在动作；π 是这个动作的概率密度；α 是探索温度。方括号就是带探索项的下一步价值。这里的“目标”表示缓慢变化的 critic 副本，前文算 10.9 时暂时省略了熵项。</p><p>critic 用预测和 y 的误差学习，再加入保守/校准正则。actor 用 critic 的评分学习自己的输出；行为约束让输出与教师建议更接近。两者的参数方向都由反向传播和优化器计算，不是人工逐个把矩阵数字改成正确答案。</p><h4>教师监督的一次小例子</h4><p>假设教师建议动作 1，学生根据原型距离计算出的动作 1 概率只有 0.2，交叉熵惩罚是 −ln(0.2)≈1.609；如果学到概率 0.8，惩罚变为 −ln(0.8)≈0.223。ln 是自然对数，在此只要理解“给教师动作的概率越小，惩罚越大”。另一个 MSE 项把学生潜在均值拉近动作 1 原型。本次权重 5.0 调节这类监督对 actor 的影响，教师本身保持冻结。</p>
+  <h3>为什么阶段结束后做 5 局短评估</h3>
+  <p>每个 20000 步阶段结束后，训练器暂停更新，用当前参数做 5 局、每局最多 300 步的检查。它是当前阶段游戏的快速检查。它不会在每个阶段同时重测两款游戏，也不能单独证明旧任务完全没遗忘；最后的双游戏长评估才检查同一终点的两种能力。</p>
+  <div class="grid"><div class="card"><h4>短评估输出</h4><p>阶段评估 JSON、平均回报或分数、自然终止和截断数量、checkpoint 哈希。</p></div><div class="card"><h4>训练输出</h4><p><span class="code">episodes.csv</span>、<span class="code">updates.csv</span>、<span class="code">events.jsonl</span>、<span class="code">status.json</span>、阶段 checkpoint。</p></div></div>
+  <h3>从哪里继续，为什么 80000 不等于 73056</h3><p>正式主线之前，共享起点已有 3000 次 SAC 更新和单独登记的监督修复。后续 3072 步冒烟又增加了 2052 次 SAC 更新，所以主线进入时计数为 5052；主线新增 68004 次，最终为 5052+68004=73056。监督修复、动作表示训练和 SAC 计数是分开的，这个计数不表示所有优化器累计调用总数。</p>
+  <p>主线 80000 步只统计该运行里的训练交互，起点数据、冒烟交互和评估交互不混进去。两个游戏各训练 40000 步，四阶段一直继续共享参数。正式前的单游戏基线是参照试验，不是最终交付，也没有把各自权重合并。</p>
+  <p>目录里多个 <span class="code">stage_XX.pt</span> 是同一模型不同时间的历史快照，不表示部署时要轮流调用很多模型。最终部署只选择训练终点的 <span class="code">latest.pt</span>。</p>
+  <details><summary>随机初始化、seed 0/1 为什么存在？</summary><p>随机初始化的是权重等初始参数。基线从各自随机起点训练，是为了检查独立训练结果是否稳定；seed 0 与 seed 1 不是同一个模型内部的两组参数。本次最终主线保留经过预训练和修复的共享起点，没有重新随机初始化；它只完成一条共享续训链。重复基线不能替代最终主线的多种子重复。</p></details>
+</section>
+
+<section id="evaluation">
+  <h2>六、最终结果应该怎样读</h2>
+  <div class="callout green"><strong>验收结论：</strong>同一个最终 checkpoint 在本次预设 WemiEnv 双游戏 benchmark 下通过。两款游戏各 20 局全部达到 3000 步，没有自然死亡，评估前后更新计数均为 73056。</div>
+  <table><thead><tr><th>项目</th><th>Flappy Bird</th><th>Timberman</th></tr></thead><tbody>
+    <tr><td>平均指标</td><td>学习回报 2267.3487</td><td>实际分数 2505.85</td></tr>
+    <tr><td>标准差</td><td>23.8071</td><td>12.1970</td></tr>
+    <tr><td>局数 / 每局上限</td><td>20 / 3000 步</td><td>20 / 3000 步</td></tr>
+    <tr><td>自然结束</td><td>0 / 20</td><td>0 / 20</td></tr>
+    <tr><td>达到上限截断</td><td>20 / 20</td><td>20 / 20</td></tr>
+    <tr><td>评估更新计数</td><td>73056 → 73056</td><td>73056 → 73056</td></tr>
+  </tbody></table>
+  <p class="note">两个游戏的奖励定义和尺度不同，不能把 2267 与 2505 直接比较。WemiEnv 不支持游戏内部随机种子，3000 步是评估预算上限，结果应表述为本 benchmark 通过。</p>
+  <h3>起点与最终表现</h3>
+  <table><thead><tr><th>同一共享模型的阶段</th><th>Flappy Bird 平均回报</th><th>Timberman 平均分</th></tr></thead><tbody><tr><td>主线训练前起点评估</td><td>2288.7497</td><td>2499.7</td></tr><tr><td>最终独立评估</td><td>2267.3487</td><td>2505.85</td></tr></tbody></table>
+  <p>Flappy Bird 均值比起点低约 0.94%，Timberman 高约 0.25%。起点本来就已全部跑满上限，所以本次不能据此宣称 80000 步带来明显性能提升。客户端随机序列和实时计时也没严格固定，当前最稳妥的结论是：续训后同一模型仍保持双游戏测试能力。</p>
+  <div class="callout yellow"><strong>饱和的测试为什么难分好坏：</strong>如果起点和终点都只能被观察到 3000 步，它们的真实存活能力可能不同，却都会记成 3000。以后要研究提升，得补更难的设置、适应速度或更有区分度的评价。页面不会因此启动任何新实验。</div>
+  <h3>最终模型和文件</h3>
+  <div class="card"><p><strong>checkpoint：</strong><span class="code">FanHua/experiments/20261008_122246_330413_mainline_shared_model/checkpoints/latest.pt</span></p><p><strong>SHA256：</strong><span class="code">f3ed7900942db70f70aa2479533c0622bf78d6b98a786a6534a1c43657b08bf9</span></p><p><strong>完整验收：</strong><a href="最终验收_单模型双游戏.json">最终验收_单模型双游戏.json</a>　<strong>中文总结：</strong><a href="最终总结_单模型双游戏.md">最终总结_单模型双游戏.md</a></p></div>
+  <div class="quiz" data-answer="c"><h3>小测：评估阶段最重要的证据是什么？</h3><p>A. 某一局最高分。<br>B. 终端打印了一句“完成”。<br>C. 同一 checkpoint 在两款游戏的多局结果，以及评估前后参数和更新计数不变。</p><button class="btn" data-choice="a">选 A</button><button class="btn" data-choice="b">选 B</button><button class="btn" data-choice="c">选 C</button><div class="quiz-result"></div></div>
+</section>
+
+<section id="glossary">
+  <h2>七、术语速查</h2>
+  <details><summary>Agent / 智能体</summary><p>负责观察环境、选择动作、从反馈中学习的程序。在本次任务里，它是 PyTorch 训练器加共享模型。</p></details>
+  <details><summary>Actor / Policy</summary><p>根据状态决定动作的网络。训练时它和 critic 一起更新，评估时只用它做确定性动作。</p></details>
+  <details><summary>Critic / Q 网络</summary><p>评价状态和动作未来能得到多少回报。本次有两个 critic，取较小值来减少价值过高估计。</p></details>
+  <details><summary>Replay Buffer</summary><p>经验回放池，保存过去的 state、action、reward、next_state。训练从池里抽样，而不是只用最新一步。</p></details>
+  <details><summary>梯度更新</summary><p>损失对参数的方向信息。模型沿着能降低损失的方向修改参数，这就是一次 update。</p></details>
+  <details><summary>Checkpoint</summary><p>训练中保存的可恢复快照。<span class="code">.pt</span> 是 PyTorch 常见后缀，不代表只有参数；本次还保存优化器、回放和进度。</p></details>
+  <details><summary>Seed</summary><p>随机数初始化种子。同一个模型只有一份权重时，seed 0、seed 1 通常指两次独立训练的随机起点，用来检查稳定性，不是同一模型的两份参数。</p></details>
+  <details><summary>泛化</summary><p>本次语境是让同一个共享策略处理两款已知游戏，并在任务切换后保持能力。它不自动等于对第三款未见游戏的零样本泛化。</p></details>
+  <details><summary>论文中的 regret / 遗憾</summary><p>可以理解为“理想最优策略和当前策略之间累计差了多少”。论文用理论界说明校准和历史经验有助于减少持续适应期间的损失。</p></details>
+  <details><summary>Off-policy、Offline、Online 三个词</summary><p>Online 是继续从环境收集新交互，Offline 是在已存数据上更新。Off-policy 是可以用其他或旧行为策略产生的数据来学习，SAC 属于这类；它并不等于 Offline。主线一边真实交互一边混合历史经验，仍是在线训练。</p></details>
+  <details><summary>PPO 与 SAC 为什么都出现？</summary><p>PPO 是先前 Flappy Bird 策略使用的算法，其更新围绕当前策略新采样的数据并限制策略变化。本次共享主线采用潜在 SAC/CQL 风格组件，PPO 仅作为教师来源之一。PyTorch 是计算框架，PPO 与 SAC 才是训练规则。</p></details>
+  <details><summary>灾难性遗忘与分布偏移</summary><p>灾难性遗忘是学新任务后旧能力大幅下降；分布偏移是现在遇到的状态和动作组合与以前数据不同。两者可能相关，不能从一次低分就判断原因。需要同 checkpoint 复测、原始日志和受控对照。</p></details>
+  <details><summary>归一化、超参数与学习参数</summary><p>把坐标除以 600 是输入缩放；把 Flappy 奖励除以 100 是奖励缩放；它们不等于论文曲线的归一化成绩。权重、偏置、动作原型和温度属于模型内部参数。学习率、batch_size、历史比例和行为权重属于人为设定的超参数，保存在 config.json。参数在训练中自动改变，超参数按实验设置控制。</p></details>
+  <details><summary>均值、样本标准差、置信区间</summary><p>均值是多局分数的平均。样本标准差描述单局围绕均值的散布，本次用 statistics.stdev，分母是 n−1。标准差不是“均值有多准确”的置信区间；20 局同一 checkpoint 也不是 20 次独立训练。这里没有计算统计显著性或泛化置信区间。</p></details>
+  <div class="callout"><strong>读完后，用自己的话回答：</strong><br>一次训练更新具体改了什么？任务标签帮助解决什么？历史回放和价值校准分别处理什么问题？3000 步截断与死亡为什么不同？本次结果对哪两款游戏、在哪个测试范围内有效？</div>
+  <h3>对应代码，按需要打开</h3><table><thead><tr><th>想看什么</th><th>入口</th></tr></thead><tbody><tr><td>状态编码、WebSocket、奖励</td><td><a href="../fanhua/envs.py">fanhua/envs.py</a></td></tr><tr><td>actor、双 Q、原型、更新和 checkpoint</td><td><a href="../fanhua/agent.py">fanhua/agent.py</a></td></tr><tr><td>历史采样、MC、有效下界</td><td><a href="../fanhua/replay.py">fanhua/replay.py</a></td></tr><tr><td>教师与交叉熵约束</td><td><a href="../fanhua/supervision.py">fanhua/supervision.py</a></td></tr><tr><td>阶段循环</td><td><a href="../train.py">train.py</a></td></tr><tr><td>独立评估冻结证据</td><td><a href="../evaluate.py">evaluate.py</a></td></tr><tr><td>组会材料</td><td><a href="组会汇报_双游戏泛化训练.html">打开第二份 HTML</a></td></tr></tbody></table>
+</section>
+</main>
+<footer class="footer"><div class="wrap">FanHua 学习材料 · 训练与论文内容均按当前目录中的记录整理 · 页面可离线打开，打印时会隐藏互动按钮。</div></footer>
+<script>
+(() => {
+  let detailsBeforePrint=[];window.addEventListener('beforeprint',()=>{detailsBeforePrint=Array.from(document.querySelectorAll('details'),element=>[element,element.open]);detailsBeforePrint.forEach(([element])=>{element.open=true;});});window.addEventListener('afterprint',()=>{detailsBeforePrint.forEach(([element,wasOpen])=>{element.open=wasOpen;});});
+  const motionButton=document.getElementById('motion-toggle');motionButton.addEventListener('click',()=>{const paused=document.body.classList.toggle('quiet');motionButton.setAttribute('aria-pressed',String(paused));motionButton.textContent=paused?'恢复装饰动画':'暂停装饰动画';});document.getElementById('print-tutorial').addEventListener('click',()=>window.print());
+  const gameOutput=document.getElementById('task-output'), gameVisual=document.getElementById('game-visual');
+  document.querySelectorAll('.game-btn').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('.game-btn').forEach(x=>x.classList.remove('active'));btn.classList.add('active');
+    const timber=btn.dataset.game==='timberman';
+    gameOutput.innerHTML=timber?'当前任务标签：<b>timberman</b><br>同一个 actor 读取共享参数，但知道这份观测来自 Timberman。它会在左右两侧操作之间选择。':'当前任务标签：<b>flappybird</b><br>同一个 actor 读取共享参数，但知道这份观测来自 Flappy Bird。它会在 0：不拍翅 与 1：拍翅之间选择。';
+    gameVisual.innerHTML=timber?'<span class="game-label">同一套网络，任务条件不同</span><div class="tree"><div class="branch left"></div><div class="branch right"></div><div class="trunk"></div></div>':'<span class="game-label">同一套网络，任务条件不同</span><div class="bird">🐦</div><div class="pipe top"></div><div class="pipe bottom"></div>';
+  }));
+  const bird=document.getElementById('demo-bird'), flapText=document.getElementById('flap-text');
+  document.getElementById('flap-up').addEventListener('click',()=>{bird.style.top='23%';flapText.textContent='动作 1 会让小鸟上移。真实游戏还要继续观察后续管道和奖励。'});
+  document.getElementById('flap-down').addEventListener('click',()=>{bird.style.top='64%';flapText.textContent='动作 0 不施加拍翅，重力让小鸟继续下落。'});
+  const slider=document.getElementById('history-slider');
+  slider.addEventListener('input',()=>{const n=Number(slider.value);document.getElementById('history-value').textContent=n+'%';document.getElementById('history-bar').style.width=n+'%';document.getElementById('online-bar').style.width=(100-n)+'%';document.getElementById('history-label').textContent=n+'%';document.getElementById('online-label').textContent=(100-n)+'%';});
+  const gammaSlider=document.getElementById('gamma-slider');
+  gammaSlider.addEventListener('input',()=>{const gamma=Number(gammaSlider.value)/100;document.getElementById('gamma-label').textContent=gamma.toFixed(2);document.getElementById('gamma-output').textContent='G = 1 + '+gamma.toFixed(2)+' × 2 + '+gamma.toFixed(2)+'² × 3 = '+(1+gamma*2+gamma*gamma*3).toFixed(2);});
+  let weight=0,updateCount=0;
+  const showWeight=()=>{document.getElementById('gradient-output').textContent='第 '+updateCount+' 次更新：w='+weight.toFixed(3)+'，预测='+weight.toFixed(3)+'，损失='+((weight-2)**2).toFixed(3);};
+  document.getElementById('gradient-step').addEventListener('click',()=>{weight-=0.1*2*(weight-2);updateCount++;showWeight();});
+  document.getElementById('gradient-reset').addEventListener('click',()=>{weight=0;updateCount=0;showWeight();});
+  const latentX=document.getElementById('latent-x'),latentY=document.getElementById('latent-y');
+  const showLatent=()=>{const positionX=Number(latentX.value)/100,positionY=Number(latentY.value)/100;const distanceZero=(positionX+0.6)**2+(positionY+0.6)**2,distanceOne=(positionX-0.6)**2+(positionY-0.6)**2;const point=document.getElementById('latent-point');point.setAttribute('cx',210+positionX*175);point.setAttribute('cy',100-positionY*83);document.getElementById('latent-output').textContent='e=('+positionX.toFixed(2)+','+positionY.toFixed(2)+')；d₀²='+distanceZero.toFixed(3)+'，d₁²='+distanceOne.toFixed(3)+'；映射动作 '+(distanceZero<=distanceOne?0:1)+(distanceZero===distanceOne?'（平局按索引优先选 0）':'');};
+  latentX.addEventListener('input',showLatent);latentY.addEventListener('input',showLatent);showLatent();
+  const calibrationQ=document.getElementById('cal-q'),calibrationBound=document.getElementById('cal-bound');
+  const showCalibration=()=>{const candidate=Number(calibrationQ.value),bound=Number(calibrationBound.value);document.getElementById('cal-output').textContent='Q='+candidate+'，参考='+bound+'；max(Q,参考)='+Math.max(candidate,bound)+'。'+(candidate<bound?'下界分支被选中，该候选对原 Q 的局部梯度为 0。':candidate>bound?'Q 分支被选中，该候选对原 Q 的局部梯度为 1。':'两者相等，是分支交界；教学不在这里给唯一导数。');};
+  calibrationQ.addEventListener('input',showCalibration);calibrationBound.addEventListener('input',showCalibration);showCalibration();
+  const simState=document.getElementById('sim-state'),simAction=document.getElementById('sim-action'),simReward=document.getElementById('sim-reward'),simExplain=document.getElementById('sim-explain');let n=0;
+  document.getElementById('sim-step').addEventListener('click',()=>{n++;const action=n%2;simState.innerHTML='<b>观测 s'+n+'</b><span>小鸟高度 / 管道</span>';simAction.innerHTML='<b>动作 '+action+'</b><span>'+ (action?'拍翅':'不拍') +'</span>';simReward.innerHTML='<b>奖励 r'+n+'</b><span>'+ (action?'继续观察':'等待反馈') +'</span>';simExplain.textContent='第 '+n+' 步经验已经可以写入回放池。真实训练会在积累足够样本后，用它更新 actor、critic 和目标网络。';});
+  document.getElementById('sim-reset').addEventListener('click',()=>{n=0;simState.innerHTML='<b>观测</b><span>等待</span>';simAction.innerHTML='<b>动作</b><span>等待</span>';simReward.innerHTML='<b>奖励</b><span>等待</span>';simExplain.textContent='你会看到一个简化的“状态 → 动作 → 奖励”循环。真实训练还会把这一条经验放入回放池并更新网络。';});
+  const updateLessons=[
+    ['观测与动作','教学状态 s 下选择拍翅。收到 r=1、下一状态 s′、未终止；现在得到的是一条经验，参数尚未改变。'],
+    ['回放与批次','到回合或阶段边界入池；池中足够时抽 64 条。历史采样概率 25%，平均约 16 条历史和 48 条当前经验。'],
+    ['TD 目标','忽略熵项：两个目标 Q 为 10、12，取 min=10。y=1+0.99×10=10.9，表示眼前收益加未来估计。'],
+    ['损失','当前预测 Q=8，与目标 10.9 的差为 −2.9。平方误差 L=8.41，critic 需要减小这个误差。'],
+    ['参数更新','教学单参数 w=8，梯度 −5.8，学习率 0.1。更新后 w=8.58，误差降到 5.3824。真实网络使用 Adam 调整许多参数。'],
+    ['actor 与保存','actor 随后按价值、探索和行为约束更新自己的参数；目标 critic 缓慢跟进。checkpoint 保存这套状态。评估只读取并选动作。']
+  ];
+  let lessonIndex=0;
+  const showUpdateLesson=()=>{document.getElementById('update-progress').replaceChildren(...updateLessons.map((lesson,index)=>{const marker=document.createElement('span');marker.textContent=(index+1)+'. '+lesson[0];marker.classList.toggle('current',index===lessonIndex);return marker;}));document.getElementById('update-output').textContent='第 '+(lessonIndex+1)+' / 6 环节：'+updateLessons[lessonIndex][1];document.getElementById('update-prev').disabled=lessonIndex===0;document.getElementById('update-next').disabled=lessonIndex===updateLessons.length-1;};
+  document.getElementById('update-prev').addEventListener('click',()=>{lessonIndex=Math.max(0,lessonIndex-1);showUpdateLesson();});
+  document.getElementById('update-next').addEventListener('click',()=>{lessonIndex=Math.min(updateLessons.length-1,lessonIndex+1);showUpdateLesson();});
+  document.getElementById('update-reset').addEventListener('click',()=>{lessonIndex=0;showUpdateLesson();});showUpdateLesson();
+  document.querySelectorAll('.quiz').forEach(quiz=>{quiz.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{const result=quiz.querySelector('.quiz-result');result.textContent=btn.dataset.choice===quiz.dataset.answer?'答对了。关键是把“共享模型”和“评估不更新”记清楚。':'再想想。提示：看题目里关于同一 checkpoint 或参数是否改变的描述。';result.className='quiz-result '+(btn.dataset.choice===quiz.dataset.answer?'success':'danger');}));});
+})();
+</script>
+</body>
+</html>

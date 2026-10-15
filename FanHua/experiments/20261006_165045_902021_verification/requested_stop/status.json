@@ -1,0 +1,9 @@
+{
+  "stage": 0,
+  "stage_steps": 0,
+  "global_steps": 0,
+  "episodes": 0,
+  "last_checkpoint_step": 0,
+  "status": "interrupted",
+  "client_seed_supported": false
+}

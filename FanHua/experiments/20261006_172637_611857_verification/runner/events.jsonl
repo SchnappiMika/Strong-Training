@@ -1,0 +1,10 @@
+{"time_utc": "2026-10-06T09:26:39.003722+00:00", "event": "start", "config": {"seed": 0, "hidden_dim": 16, "embedding_dim": 2, "learning_rate": 0.0003, "representation_lr": 0.001, "gamma": 0.99, "tau": 0.005, "batch_size": 4, "capacity": 128, "history_probability": 0.25, "warmup_steps": 4, "representation_steps": 3, "cql_samples": 2, "cql_weight": 0.1, "calibration": true, "checkpoint_interval": 4, "max_episode_steps": 1000, "connect_timeout": 600, "response_timeout": 30, "stages": [{"task": "flappybird", "steps": 12}, {"task": "timberman", "steps": 12}, {"task": "flappybird", "steps": 12}], "stage_evaluation_episodes": 2, "stage_evaluation_steps": 5}}
+{"time_utc": "2026-10-06T09:26:39.008954+00:00", "event": "stage_start", "task": "flappybird", "stage": 0, "global_steps": 0}
+{"time_utc": "2026-10-06T09:26:39.036688+00:00", "event": "failed", "error": "ConnectionError: Synthetic disconnect", "global_steps": 5}
+{"time_utc": "2026-10-06T09:26:39.079879+00:00", "event": "resume", "checkpoint": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261006_172637_611857_verification\\runner\\checkpoints\\latest.pt", "previous_status": "failed", "previous_error": "ConnectionError: Synthetic disconnect", "global_steps": 5}
+{"time_utc": "2026-10-06T09:26:39.082776+00:00", "event": "stage_start", "task": "flappybird", "stage": 0, "global_steps": 5}
+{"time_utc": "2026-10-06T09:26:39.168437+00:00", "event": "stage_completed", "task": "flappybird", "stage": 0, "global_steps": 12, "updates": 9}
+{"time_utc": "2026-10-06T09:26:39.182058+00:00", "event": "stage_start", "task": "timberman", "stage": 1, "global_steps": 12}
+{"time_utc": "2026-10-06T09:26:39.286059+00:00", "event": "stage_completed", "task": "timberman", "stage": 1, "global_steps": 24, "updates": 16}
+{"time_utc": "2026-10-06T09:26:39.299036+00:00", "event": "stage_start", "task": "flappybird", "stage": 2, "global_steps": 24}
+{"time_utc": "2026-10-06T09:26:39.416892+00:00", "event": "stage_completed", "task": "flappybird", "stage": 2, "global_steps": 36, "updates": 25}

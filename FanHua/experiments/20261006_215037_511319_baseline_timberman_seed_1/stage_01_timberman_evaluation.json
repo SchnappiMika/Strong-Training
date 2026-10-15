@@ -1,0 +1,223 @@
+{
+  "status": "completed",
+  "task": "timberman",
+  "episodes": [
+    {
+      "episode": 0,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 246.0,
+      "raw_return": 37511.0,
+      "score": 246.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 1,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 259.0,
+      "raw_return": 38678.0,
+      "score": 259.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 2,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 255.0,
+      "raw_return": 38266.0,
+      "score": 255.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 3,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 245.0,
+      "raw_return": 37028.0,
+      "score": 245.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 4,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 245.0,
+      "raw_return": 36620.0,
+      "score": 245.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 5,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 251.0,
+      "raw_return": 37244.0,
+      "score": 251.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 6,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 251.0,
+      "raw_return": 38005.0,
+      "score": 251.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 7,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 249.0,
+      "raw_return": 37702.0,
+      "score": 249.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 8,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 243.0,
+      "raw_return": 36781.0,
+      "score": 243.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 9,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 253.0,
+      "raw_return": 38136.0,
+      "score": 253.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 10,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 248.0,
+      "raw_return": 37537.0,
+      "score": 248.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 11,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 243.0,
+      "raw_return": 36837.0,
+      "score": 243.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 12,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 254.0,
+      "raw_return": 38101.0,
+      "score": 254.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 13,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 253.0,
+      "raw_return": 37953.0,
+      "score": 253.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 14,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 250.0,
+      "raw_return": 37552.0,
+      "score": 250.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 15,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 248.0,
+      "raw_return": 37225.0,
+      "score": 248.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 16,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 253.0,
+      "raw_return": 37552.0,
+      "score": 253.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 17,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 245.0,
+      "raw_return": 36846.0,
+      "score": 245.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 18,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 249.0,
+      "raw_return": 37956.0,
+      "score": 249.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 19,
+      "task": "timberman",
+      "steps": 287,
+      "learning_return": 235.0,
+      "raw_return": 34515.0,
+      "score": 236.0,
+      "terminated": true,
+      "truncated": false
+    }
+  ],
+  "action_counts": {
+    "0": 2948,
+    "1": 3039
+  },
+  "deterministic_policy": true,
+  "client_seed_supported": false,
+  "parameters_before": "162e644966570b451028004de54cb1bef9f847814d701759eaa8ad96a47fce24",
+  "parameters_after": "162e644966570b451028004de54cb1bef9f847814d701759eaa8ad96a47fce24",
+  "updates_before": 39489,
+  "updates_after": 39489,
+  "mean_learning_return": 248.75,
+  "std_learning_return": 5.34961877638319,
+  "mean_steps": 299.35,
+  "mean_score": 248.8,
+  "stage": 0,
+  "checkpoint": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261006_215037_511319_baseline_timberman_seed_1\\checkpoints\\latest.pt",
+  "checkpoint_sha256": "12d2d554c75b5cf551a8ccb86be264b083785397e9f7de2ec001a419c8f533b9"
+}

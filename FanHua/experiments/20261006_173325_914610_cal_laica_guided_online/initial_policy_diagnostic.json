@@ -1,0 +1,6 @@
+{
+  "checked_observed_patterns": 8,
+  "failures": [],
+  "passed": true,
+  "scope": "Regression diagnostic on replay observations; does not alter actions or establish game score"
+}

@@ -1,0 +1,10 @@
+{
+  "stage": 4,
+  "stage_steps": 0,
+  "global_steps": 3072,
+  "episodes": 326,
+  "last_checkpoint_step": 2959,
+  "status": "completed_training_not_yet_evaluated",
+  "client_seed_supported": false,
+  "error": "ConnectionError: WeChat client disconnected; recompile and resume from checkpoint"
+}

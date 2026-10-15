@@ -1,0 +1,12 @@
+{
+  "stage": 0,
+  "stage_steps": 0,
+  "global_steps": 0,
+  "episodes": 0,
+  "last_checkpoint_step": 0,
+  "status": "paused_by_user_before_client_connection",
+  "pause_reason": "User requested questions before starting online training; listener stopped with zero interactions and zero new updates",
+  "resume_checkpoint": "experiments/20261006_171810_268739_repair_shared_policy/checkpoints/latest.pt",
+  "phase": "online_train",
+  "client_seed_supported": false
+}

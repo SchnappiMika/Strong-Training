@@ -1,0 +1,21 @@
+{
+  "path": "experiments/20261006_171810_268739_repair_shared_policy/checkpoints/latest.pt",
+  "sha256": "7dcd633301b11959ff33b5cdad92a290ca78cd83bfe03ced8fcecddd86cdc493",
+  "size": 1511341,
+  "algorithm": "task_conditioned_latent_SAC_Cal_LAICA_extension",
+  "updates": 3000,
+  "progress": {
+    "stage": 0,
+    "stage_steps": 0,
+    "global_steps": 0,
+    "episodes": 0,
+    "last_checkpoint_step": 0,
+    "status": "completed_policy_repair_requires_real_evaluation",
+    "phase": "offline_pretrain",
+    "client_seed_supported": false
+  },
+  "teacher_sha256": {
+    "flappybird": "ea5e5d22e4518ccb7a6dd2bb9671afc785af2a029412de0be6bef374c3457ceb",
+    "timberman": "6f03a3d9df93eadd4ff755108bc8923fa1a04db9cef3f2ac988237f15b2413ff"
+  }
+}

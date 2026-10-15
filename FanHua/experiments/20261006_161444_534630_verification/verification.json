@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "tests": [
+    {
+      "test": "__main__.Verification.test_calibration_gradients",
+      "status": "passed"
+    },
+    {
+      "test": "__main__.Verification.test_mc_returns_and_history",
+      "status": "passed"
+    },
+    {
+      "test": "__main__.Verification.test_observations_and_game_mismatch",
+      "status": "passed"
+    },
+    {
+      "test": "__main__.Verification.test_outputs_and_config",
+      "status": "passed"
+    },
+    {
+      "test": "__main__.Verification.test_reward_difference_and_truncation",
+      "status": "passed"
+    },
+    {
+      "test": "__main__.Verification.test_runner_stage_boundaries_and_disconnect_resume",
+      "status": "passed"
+    },
+    {
+      "test": "__main__.Verification.test_shutdown_and_port_reuse",
+      "status": "passed"
+    },
+    {
+      "test": "__main__.Verification.test_updates_frozen_prototypes_and_exact_resume",
+      "status": "passed"
+    }
+  ],
+  "scope": "Synthetic algorithm and localhost protocol tests; not game mastery"
+}

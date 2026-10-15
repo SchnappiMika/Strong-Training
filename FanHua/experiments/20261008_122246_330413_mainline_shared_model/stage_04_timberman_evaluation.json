@@ -1,0 +1,74 @@
+{
+  "status": "completed",
+  "task": "timberman",
+  "episodes": [
+    {
+      "episode": 0,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 251.0,
+      "raw_return": 37758.0,
+      "score": 251.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 1,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 254.0,
+      "raw_return": 38007.0,
+      "score": 254.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 2,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 247.0,
+      "raw_return": 36465.0,
+      "score": 247.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 3,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 252.0,
+      "raw_return": 37784.0,
+      "score": 252.0,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 4,
+      "task": "timberman",
+      "steps": 300,
+      "learning_return": 244.0,
+      "raw_return": 36886.0,
+      "score": 244.0,
+      "terminated": false,
+      "truncated": true
+    }
+  ],
+  "action_counts": {
+    "0": 768,
+    "1": 732
+  },
+  "evaluation_max_steps": 300,
+  "deterministic_policy": true,
+  "client_seed_supported": false,
+  "parameters_before": "ae6d8b3f714c0fbda040c367e50530e186c7f8f943171ad3f08600934efe817c",
+  "parameters_after": "ae6d8b3f714c0fbda040c367e50530e186c7f8f943171ad3f08600934efe817c",
+  "updates_before": 73056,
+  "updates_after": 73056,
+  "mean_learning_return": 249.6,
+  "std_learning_return": 4.03732584763727,
+  "mean_steps": 300,
+  "mean_score": 249.6,
+  "stage": 3,
+  "checkpoint": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261008_122246_330413_mainline_shared_model\\checkpoints\\latest.pt",
+  "checkpoint_sha256": "ccdb6b568b619e6334e5ec702ee1b2a0d803c4dd4db316531213af84f63b468c"
+}

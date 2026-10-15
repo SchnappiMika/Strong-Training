@@ -1,0 +1,6 @@
+episode,task,steps,raw_return,learning_return,score,terminated,truncated
+0,timberman,300,36738.0,244.0,244.0,False,True
+1,timberman,300,37060.0,246.0,246.0,False,True
+2,timberman,300,37720.0,250.0,250.0,False,True
+3,timberman,300,37343.0,253.0,253.0,False,True
+4,timberman,300,36892.0,246.0,246.0,False,True

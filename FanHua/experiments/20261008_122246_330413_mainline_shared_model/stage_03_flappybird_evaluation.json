@@ -1,0 +1,73 @@
+{
+  "status": "completed",
+  "task": "flappybird",
+  "episodes": [
+    {
+      "episode": 0,
+      "task": "flappybird",
+      "steps": 300,
+      "learning_return": 233.54201063782452,
+      "raw_return": 23354.201063782475,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 1,
+      "task": "flappybird",
+      "steps": 300,
+      "learning_return": 225.87270192864327,
+      "raw_return": 22587.270192864315,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 2,
+      "task": "flappybird",
+      "steps": 300,
+      "learning_return": 215.07669125074077,
+      "raw_return": 21507.669125074066,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 3,
+      "task": "flappybird",
+      "steps": 300,
+      "learning_return": 230.33397577907945,
+      "raw_return": 23033.39757790795,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 4,
+      "task": "flappybird",
+      "steps": 300,
+      "learning_return": 221.78693398182304,
+      "raw_return": 22178.69339818229,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    }
+  ],
+  "action_counts": {
+    "0": 1111,
+    "1": 389
+  },
+  "evaluation_max_steps": 300,
+  "deterministic_policy": true,
+  "client_seed_supported": false,
+  "parameters_before": "e587decb6ced317563b5be65eb08bdc6456c6dd85f0602dcc47028e253ff61d6",
+  "parameters_after": "e587decb6ced317563b5be65eb08bdc6456c6dd85f0602dcc47028e253ff61d6",
+  "updates_before": 56055,
+  "updates_after": 56055,
+  "mean_learning_return": 225.3224627156222,
+  "std_learning_return": 7.253530015796228,
+  "mean_steps": 300,
+  "stage": 2,
+  "checkpoint": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261008_122246_330413_mainline_shared_model\\checkpoints\\latest.pt",
+  "checkpoint_sha256": "99135ec6ee83a1ffa5d14e8f9b03ea9d346b5ebefac06c23a972e06243e8dbb4"
+}

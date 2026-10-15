@@ -1,0 +1,271 @@
+{
+  "status": {},
+  "training_episode_rows": 0,
+  "update_rows": 3000,
+  "training_by_task": {
+    "flappybird": {
+      "learning_return": null,
+      "steps": null,
+      "score": null
+    },
+    "timberman": {
+      "learning_return": null,
+      "steps": null,
+      "score": null
+    }
+  },
+  "evaluations": [
+    {
+      "task": "flappybird",
+      "checkpoint": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261006_164133_399330_offline_pretrain\\checkpoints\\latest.pt",
+      "checkpoint_sha256": "b77ac3c79b038e01318452e9c71786b32da644f1d81a65274e3ceafa286d95d0",
+      "status": "completed",
+      "client_seed_supported": false,
+      "deterministic_policy": true,
+      "episodes": [
+        {
+          "episode": 0,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 23002.763728050137,
+          "learning_return": 230.02763728050132,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 1,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 23874.15093904762,
+          "learning_return": 238.74150939047598,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 2,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 22519.491388961742,
+          "learning_return": 225.1949138896174,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 3,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 24046.892872118442,
+          "learning_return": 240.46892872118462,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 4,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 23858.678687472886,
+          "learning_return": 238.58678687472894,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 5,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 22667.407956529863,
+          "learning_return": 226.67407956529826,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 6,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 22912.52322331654,
+          "learning_return": 229.12523223316515,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 7,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 22095.897354629255,
+          "learning_return": 220.95897354629255,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 8,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 21323.2575578223,
+          "learning_return": 213.23257557822294,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 9,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 23604.469992828737,
+          "learning_return": 236.04469992828712,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 10,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 23867.655053425897,
+          "learning_return": 238.67655053425906,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 11,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 22522.13719968804,
+          "learning_return": 225.2213719968806,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 12,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 24126.88554089722,
+          "learning_return": 241.26885540897214,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 13,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 22245.490685904366,
+          "learning_return": 222.45490685904375,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 14,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 22178.685320601577,
+          "learning_return": 221.78685320601588,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 15,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 22264.8564810733,
+          "learning_return": 222.64856481073312,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 16,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 22567.913007437906,
+          "learning_return": 225.67913007437895,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 17,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 22697.518840600715,
+          "learning_return": 226.975188406007,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 18,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 24159.48815519017,
+          "learning_return": 241.59488155190155,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        },
+        {
+          "episode": 19,
+          "task": "flappybird",
+          "steps": 300,
+          "raw_return": 23707.072653111096,
+          "learning_return": 237.07072653111084,
+          "score": null,
+          "terminated": false,
+          "truncated": true
+        }
+      ],
+      "updates_before": 3000,
+      "parameters_before": "71c03f02d81a14e6a91b56bc75bda77a2f02f70fffa43e8371d9d4436b0e88c3",
+      "action_counts": {
+        "0": 4486,
+        "1": 1514
+      },
+      "mean_learning_return": 230.12161831935387,
+      "std_learning_return": 8.302123332139242,
+      "mean_steps": 300,
+      "updates_after": 3000,
+      "parameters_after": "71c03f02d81a14e6a91b56bc75bda77a2f02f70fffa43e8371d9d4436b0e88c3"
+    }
+  ],
+  "same_checkpoint_evaluated_on_both_tasks": false,
+  "critic_loss": {
+    "count": 3000,
+    "mean": 1.2144512954304616,
+    "std": 1.0278600517195393,
+    "max": 7.7685112953186035
+  },
+  "policy_loss": {
+    "count": 3000,
+    "mean": -3.9346581807732584,
+    "std": 2.9182132373349,
+    "max": 1.3820836544036865
+  },
+  "alpha": {
+    "count": 3000,
+    "mean": 0.04647317827492952,
+    "std": 0.006841707762356593,
+    "max": 0.06470856815576553
+  },
+  "history_fraction": {
+    "count": 3000,
+    "mean": 1.0,
+    "std": 0.0,
+    "max": 1.0
+  },
+  "bound_fraction": {
+    "count": 3000,
+    "mean": 0.460703125,
+    "std": 0.06196453697524814,
+    "max": 0.6875
+  }
+}

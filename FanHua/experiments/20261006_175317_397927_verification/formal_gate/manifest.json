@@ -1,0 +1,31 @@
+{
+  "formal_training_ready": true,
+  "formal_experiments_authorized": true,
+  "primary_seed": 0,
+  "baseline_steps_per_task": 12,
+  "baseline_final_evaluation_episodes": 3,
+  "baseline_final_evaluation_steps": 10,
+  "experiments": [
+    {
+      "role": "single_game_baseline",
+      "task": "flappybird",
+      "seed": 0,
+      "status": "completed",
+      "config": "experiments\\20261006_175317_397927_verification\\formal_gate\\flappybird\\config.json",
+      "config_sha256": "fa574123786d9e6c5a797ccf39bf411c5bcb62f669658b678d795c4e36060771",
+      "run": "experiments\\20261006_175317_397927_verification\\formal_gate\\flappybird",
+      "evaluation": "experiments\\20261006_175317_397927_verification\\formal_gate\\flappybird\\evaluation.json"
+    },
+    {
+      "role": "single_game_baseline",
+      "task": "timberman",
+      "seed": 0,
+      "status": "completed",
+      "config": "experiments\\20261006_175317_397927_verification\\formal_gate\\timberman\\config.json",
+      "config_sha256": "f203dfa7e98c8e36d4ed8754896e04d649d8b8d8bbe75d2ccec8817fdffc1005",
+      "run": "experiments\\20261006_175317_397927_verification\\formal_gate\\timberman",
+      "evaluation": "experiments\\20261006_175317_397927_verification\\formal_gate\\timberman\\evaluation.json"
+    }
+  ],
+  "synthetic": true
+}

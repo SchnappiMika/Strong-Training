@@ -1,0 +1,10 @@
+{
+  "stage": 1,
+  "stage_steps": 0,
+  "global_steps": 40000,
+  "episodes": 79,
+  "last_checkpoint_step": 40000,
+  "status": "completed_training_not_yet_evaluated",
+  "client_seed_supported": false,
+  "phase": "online_train"
+}

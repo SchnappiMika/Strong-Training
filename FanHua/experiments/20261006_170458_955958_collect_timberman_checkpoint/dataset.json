@@ -1,0 +1,11 @@
+{
+  "status": "stopped_by_user_before_client_connected",
+  "behavior": "checkpoint",
+  "task": "timberman",
+  "source_model": "FanHua/experiments/20261006_161456_139334_timber_first_smoke/checkpoints/latest.pt",
+  "source_sha256": "6f03a3d9df93eadd4ff755108bc8923fa1a04db9cef3f2ac988237f15b2413ff",
+  "episodes": [],
+  "client_seed_supported": false,
+  "maximum_episodes": 10,
+  "maximum_steps_per_episode": 300
+}

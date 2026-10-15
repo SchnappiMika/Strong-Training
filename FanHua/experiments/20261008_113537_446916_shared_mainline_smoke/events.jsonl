@@ -1,0 +1,11 @@
+{"time_utc": "2026-10-08T03:35:49.193232+00:00", "event": "resume", "checkpoint": "FanHua/experiments/20261008_113537_446916_shared_mainline_smoke/checkpoints/initialized.pt", "previous_status": "completed_policy_repair_requires_real_evaluation", "previous_error": null, "global_steps": 0}
+{"time_utc": "2026-10-08T03:35:49.704524+00:00", "event": "stage_start", "task": "flappybird", "stage": 0, "global_steps": 0}
+{"time_utc": "2026-10-08T03:40:55.976640+00:00", "event": "stage_completed", "task": "flappybird", "stage": 0, "global_steps": 768, "updates": 3513}
+{"time_utc": "2026-10-08T03:40:56.101246+00:00", "event": "stage_start", "task": "timberman", "stage": 1, "global_steps": 768}
+{"time_utc": "2026-10-08T03:44:06.675367+00:00", "event": "resume", "checkpoint": "FanHua/experiments/20261008_113537_446916_shared_mainline_smoke/checkpoints/stage_01.pt", "previous_status": "running", "previous_error": null, "global_steps": 768}
+{"time_utc": "2026-10-08T03:44:07.089984+00:00", "event": "stage_start", "task": "timberman", "stage": 1, "global_steps": 768}
+{"time_utc": "2026-10-08T03:47:54.032569+00:00", "event": "stage_completed", "task": "timberman", "stage": 1, "global_steps": 1536, "updates": 4026}
+{"time_utc": "2026-10-08T03:47:54.250857+00:00", "event": "stage_start", "task": "flappybird", "stage": 2, "global_steps": 1536}
+{"time_utc": "2026-10-08T04:01:22.744072+00:00", "event": "stage_completed", "task": "flappybird", "stage": 2, "global_steps": 2304, "updates": 4539}
+{"time_utc": "2026-10-08T04:01:22.916659+00:00", "event": "stage_start", "task": "timberman", "stage": 3, "global_steps": 2304}
+{"time_utc": "2026-10-08T04:09:57.223667+00:00", "event": "stage_completed", "task": "timberman", "stage": 3, "global_steps": 3072, "updates": 5052}

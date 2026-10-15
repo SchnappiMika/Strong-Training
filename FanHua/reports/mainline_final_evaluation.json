@@ -1,0 +1,43 @@
+{
+  "preflight_status": "passed",
+  "checkpoint": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261008_122246_330413_mainline_shared_model\\checkpoints\\latest.pt",
+  "checkpoint_sha256": "f3ed7900942db70f70aa2479533c0622bf78d6b98a786a6534a1c43657b08bf9",
+  "parameters_before": "ae6d8b3f714c0fbda040c367e50530e186c7f8f943171ad3f08600934efe817c",
+  "updates_before": 73056,
+  "training_steps": 80000,
+  "evaluation_policy": "deterministic_shared_actor_without_teachers",
+  "requested_episodes_per_game": 20,
+  "max_steps_per_episode": 3000,
+  "evaluation_seed": 1000,
+  "client_seed_supported": false,
+  "parameter_updates_performed": 0,
+  "flappybird": {
+    "status": "completed",
+    "run": "experiments/20261008_172006_553338_evaluate_flappybird",
+    "console_log": "reports/mainline_final_flappybird_console.log",
+    "episodes": 20,
+    "mean_learning_return": 2267.3487263215898,
+    "std_learning_return": 23.807076383777005,
+    "mean_steps": 3000,
+    "natural_terminations": 0,
+    "truncated_episodes": 20,
+    "updates_before": 73056,
+    "updates_after": 73056,
+    "parameters_unchanged": true
+  },
+  "timberman": {
+    "status": "completed",
+    "run": "experiments/20261008_200326_813205_evaluate_timberman",
+    "console_log": "reports/mainline_final_timberman_console.log",
+    "episodes": 20,
+    "mean_score": 2505.85,
+    "std_score": 12.196958205785744,
+    "mean_steps": 3000,
+    "natural_terminations": 0,
+    "truncated_episodes": 20,
+    "updates_before": 73056,
+    "updates_after": 73056,
+    "parameters_unchanged": true
+  },
+  "automatic_retraining": false
+}

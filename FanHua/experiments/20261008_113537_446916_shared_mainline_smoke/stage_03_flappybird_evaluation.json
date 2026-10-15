@@ -1,0 +1,73 @@
+{
+  "status": "completed",
+  "task": "flappybird",
+  "episodes": [
+    {
+      "episode": 0,
+      "task": "flappybird",
+      "steps": 300,
+      "learning_return": 238.15178408327498,
+      "raw_return": 23815.178408327487,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 1,
+      "task": "flappybird",
+      "steps": 300,
+      "learning_return": 212.85925095470134,
+      "raw_return": 21285.925095470167,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 2,
+      "task": "flappybird",
+      "steps": 300,
+      "learning_return": 224.16339083220555,
+      "raw_return": 22416.33908322059,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 3,
+      "task": "flappybird",
+      "steps": 300,
+      "learning_return": 220.39137400453592,
+      "raw_return": 22039.137400453594,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 4,
+      "task": "flappybird",
+      "steps": 300,
+      "learning_return": 237.68742181900984,
+      "raw_return": 23768.742181900983,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    }
+  ],
+  "action_counts": {
+    "0": 1119,
+    "1": 381
+  },
+  "evaluation_max_steps": 300,
+  "deterministic_policy": true,
+  "client_seed_supported": false,
+  "parameters_before": "64dc3bedc1c12b47356c1281760430b5a518df1112bf65ed0d5647bdfe98d99e",
+  "parameters_after": "64dc3bedc1c12b47356c1281760430b5a518df1112bf65ed0d5647bdfe98d99e",
+  "updates_before": 4539,
+  "updates_after": 4539,
+  "mean_learning_return": 226.65064433874554,
+  "std_learning_return": 11.06406456922629,
+  "mean_steps": 300,
+  "stage": 2,
+  "checkpoint": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261008_113537_446916_shared_mainline_smoke\\checkpoints\\latest.pt",
+  "checkpoint_sha256": "409cf61c8276a000bf5c8848ba9d12034a7ea2a945707f658150ec5407bad5dd"
+}

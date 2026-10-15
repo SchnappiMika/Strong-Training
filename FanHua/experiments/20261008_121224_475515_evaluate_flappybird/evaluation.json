@@ -1,0 +1,73 @@
+{
+  "task": "flappybird",
+  "checkpoint": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261008_113537_446916_shared_mainline_smoke\\checkpoints\\latest.pt",
+  "checkpoint_sha256": "ec45b559f69a68b066394eab32685d57a2a9e8ab3d684722d57a3408b583e5b0",
+  "status": "completed",
+  "client_seed_supported": false,
+  "deterministic_policy": true,
+  "requested_episodes": 5,
+  "evaluation_max_steps": 300,
+  "episodes": [
+    {
+      "episode": 0,
+      "task": "flappybird",
+      "steps": 300,
+      "raw_return": 22293.827764937876,
+      "learning_return": 222.93827764937913,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 1,
+      "task": "flappybird",
+      "steps": 300,
+      "raw_return": 22952.782362980673,
+      "learning_return": 229.52782362980645,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 2,
+      "task": "flappybird",
+      "steps": 300,
+      "raw_return": 22977.69621433028,
+      "learning_return": 229.77696214330282,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 3,
+      "task": "flappybird",
+      "steps": 300,
+      "raw_return": 22856.200187017257,
+      "learning_return": 228.5620018701725,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    },
+    {
+      "episode": 4,
+      "task": "flappybird",
+      "steps": 300,
+      "raw_return": 22731.620410228366,
+      "learning_return": 227.31620410228365,
+      "score": null,
+      "terminated": false,
+      "truncated": true
+    }
+  ],
+  "updates_before": 5052,
+  "parameters_before": "4e28c14be5c334cc82d25ff340ef6ad862b9634c96fdd4bbd915e071b97de788",
+  "action_counts": {
+    "0": 1126,
+    "1": 374
+  },
+  "mean_learning_return": 227.62425387898892,
+  "std_learning_return": 2.7924169572181503,
+  "mean_steps": 300,
+  "updates_after": 5052,
+  "parameters_after": "4e28c14be5c334cc82d25ff340ef6ad862b9634c96fdd4bbd915e071b97de788"
+}

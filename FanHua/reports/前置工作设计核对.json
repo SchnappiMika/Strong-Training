@@ -1,0 +1,64 @@
+{
+  "design_checks_passed": true,
+  "checked_configs": 33,
+  "active_seeds": [
+    0,
+    1
+  ],
+  "excluded_seeds": [
+    2
+  ],
+  "baseline_results": [
+    {
+      "task": "flappybird",
+      "seed": 0,
+      "run": "experiments\\20261006_175422_464405_baseline_flappybird_seed_0",
+      "evaluation": "experiments\\20261006_193441_906918_evaluate_flappybird\\evaluation.json",
+      "mean_steps": 3000,
+      "mean_learning_return": 2313.2230598348106,
+      "std_learning_return": 28.454276716061536,
+      "mean_score": null,
+      "truncated_episodes": 20
+    },
+    {
+      "task": "timberman",
+      "seed": 0,
+      "run": "experiments\\20261006_212657_236781_baseline_timberman_seed_0",
+      "evaluation": "experiments\\20261006_214301_209618_evaluate_timberman\\evaluation.json",
+      "mean_steps": 3000,
+      "mean_learning_return": 2499.0,
+      "std_learning_return": 14.959594703206719,
+      "mean_score": 2499.0,
+      "truncated_episodes": 20
+    },
+    {
+      "task": "flappybird",
+      "seed": 1,
+      "run": "experiments\\20261006_221858_873810_baseline_flappybird_seed_1",
+      "evaluation": "experiments\\20261006_235401_533654_evaluate_flappybird\\evaluation.json",
+      "mean_steps": 3000,
+      "mean_learning_return": 2306.4057316350086,
+      "std_learning_return": 26.502571720878436,
+      "mean_score": null,
+      "truncated_episodes": 20
+    },
+    {
+      "task": "timberman",
+      "seed": 1,
+      "run": "experiments\\20261006_215037_511319_baseline_timberman_seed_1",
+      "evaluation": "experiments\\20261006_220515_750833_evaluate_timberman\\evaluation.json",
+      "mean_steps": 3000,
+      "mean_learning_return": 2501.45,
+      "std_learning_return": 16.69691115461968,
+      "mean_score": 2501.45,
+      "truncated_episodes": 20
+    }
+  ],
+  "pending_baselines": 0,
+  "remaining_baseline_training_steps": 0,
+  "planned_formal_runs": 18,
+  "planned_formal_training_steps": 1440000,
+  "formal_training_ready": false,
+  "formal_experiments_authorized": false,
+  "interpretation": "All active two-seed independent baselines verified; formal experiments remain held."
+}

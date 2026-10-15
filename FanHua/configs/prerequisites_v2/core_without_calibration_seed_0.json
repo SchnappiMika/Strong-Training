@@ -1,0 +1,48 @@
+{
+  "seed": 0,
+  "hidden_dim": 64,
+  "embedding_dim": 2,
+  "learning_rate": 0.0003,
+  "representation_lr": 0.001,
+  "gamma": 0.99,
+  "tau": 0.005,
+  "batch_size": 64,
+  "capacity": 50000,
+  "history_probability": 0.25,
+  "warmup_steps": 512,
+  "representation_steps": 500,
+  "cql_samples": 10,
+  "cql_weight": 0.1,
+  "calibration": false,
+  "checkpoint_interval": 2000,
+  "max_episode_steps": 3000,
+  "connect_timeout": 900,
+  "response_timeout": 30,
+  "stage_evaluation_episodes": 20,
+  "stage_evaluation_steps": 300,
+  "stages": [
+    {
+      "task": "flappybird",
+      "steps": 20000
+    },
+    {
+      "task": "timberman",
+      "steps": 20000
+    },
+    {
+      "task": "flappybird",
+      "steps": 20000
+    },
+    {
+      "task": "timberman",
+      "steps": 20000
+    }
+  ],
+  "policy_focus_timber": false,
+  "behavior_weight": 0.0,
+  "teacher_paths": {},
+  "experiment_role": "formal_continual_experiment",
+  "experiment_group": "core_without_calibration",
+  "initialization": "random_without_external_data",
+  "prerequisites_manifest": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\reports\\前置工作验收.json"
+}

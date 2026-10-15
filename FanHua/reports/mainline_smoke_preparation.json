@@ -1,0 +1,24 @@
+{
+  "status": "prepared_not_started",
+  "run": "experiments\\20261008_113537_446916_shared_mainline_smoke",
+  "config": "experiments\\20261008_113537_446916_shared_mainline_smoke\\config.json",
+  "initialized_checkpoint": "experiments\\20261008_113537_446916_shared_mainline_smoke\\checkpoints\\initialized.pt",
+  "source_checkpoint": "experiments/20261006_171810_268739_repair_shared_policy/checkpoints/latest.pt",
+  "source_checkpoint_sha256": "7dcd633301b11959ff33b5cdad92a290ca78cd83bfe03ced8fcecddd86cdc493",
+  "source_parameters": "b486ea8d96242077ed47664e0d2391502ec3b443fb4452122996c8a493c3ca46",
+  "parameter_updates_performed": 0,
+  "source_updates": 3000,
+  "stage_steps": 768,
+  "max_training_episode_steps": 256,
+  "total_steps": 3072,
+  "stage_evaluation_episodes": 5,
+  "stage_evaluation_steps": 300,
+  "training_settings_change": "Stage budgets and training episode cap shortened; model, optimizers, replay and RNG retained",
+  "timberman_diagnostic": {
+    "checked_observed_patterns": 8,
+    "failures": [],
+    "passed": true,
+    "scope": "Regression diagnostic on replay observations; does not alter actions or establish game score"
+  },
+  "long_training_started": false
+}

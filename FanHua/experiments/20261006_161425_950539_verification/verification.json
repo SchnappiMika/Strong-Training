@@ -1,0 +1,39 @@
+{
+  "passed": false,
+  "tests": [
+    {
+      "test": "__main__.Verification.test_calibration_gradients",
+      "status": "passed"
+    },
+    {
+      "test": "__main__.Verification.test_mc_returns_and_history",
+      "status": "passed"
+    },
+    {
+      "test": "__main__.Verification.test_observations_and_game_mismatch",
+      "status": "passed"
+    },
+    {
+      "test": "__main__.Verification.test_outputs_and_config",
+      "status": "passed"
+    },
+    {
+      "test": "__main__.Verification.test_reward_difference_and_truncation",
+      "status": "passed"
+    },
+    {
+      "test": "__main__.Verification.test_runner_stage_boundaries_and_disconnect_resume",
+      "status": "error",
+      "error": "Traceback (most recent call last):\n  File \"D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\validate.py\", line 248, in test_runner_stage_boundaries_and_disconnect_resume\n    train(values, directory, directory / \"checkpoints/latest.pt\")\n  File \"D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\train.py\", line 111, in train\n    loss = agent.fit_representation(replay, task, config[\"representation_steps\"])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\fanhua\\agent.py\", line 144, in fit_representation\n    raise ValueError(\"Representation warmup requires samples for both actions\")\nValueError: Representation warmup requires samples for both actions\n"
+    },
+    {
+      "test": "__main__.Verification.test_shutdown_and_port_reuse",
+      "status": "passed"
+    },
+    {
+      "test": "__main__.Verification.test_updates_frozen_prototypes_and_exact_resume",
+      "status": "passed"
+    }
+  ],
+  "scope": "Synthetic algorithm and localhost protocol tests; not game mastery"
+}

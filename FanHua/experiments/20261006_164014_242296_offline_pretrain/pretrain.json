@@ -1,0 +1,18 @@
+{
+  "status": "completed",
+  "datasets": [
+    {
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261006_163655_182920_collect_flappybird_legacy-ppo\\dataset.pt",
+      "behavior": "legacy-ppo",
+      "transitions": 800,
+      "valid_bounds": 0
+    },
+    {
+      "path": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261006_163416_742012_export_timberman_training_behavior\\dataset.pt",
+      "behavior": "mixed_random_warmup_and_online_latent_SAC",
+      "transitions": 1536,
+      "valid_bounds": 1409
+    }
+  ],
+  "updates": 1000
+}

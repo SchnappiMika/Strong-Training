@@ -1,0 +1,1 @@
+{"time_utc": "2026-10-08T03:43:42.525432+00:00", "event": "checkpoint_policy_check", "global_steps": 4, "passed": false, "checked_observed_patterns": 1, "failures": [{"hazard": "cut_exposes_branch"}]}

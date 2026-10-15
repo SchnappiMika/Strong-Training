@@ -1,0 +1,16 @@
+{
+  "format_version": 1,
+  "gamma": 0.99,
+  "behavior": "mixed_random_warmup_and_online_latent_SAC",
+  "encoding_version": "wemi_12_v1",
+  "reward_version": "flappy_scaled_timber_delta_v1",
+  "source_checkpoint": "D:\\Schnappi SaMa\\大学\\浙大城市学院\\科研\\石龙翔\\强化学习\\FanHua\\experiments\\20261006_161456_139334_timber_first_smoke\\checkpoints\\latest.pt",
+  "source_sha256": "6f03a3d9df93eadd4ff755108bc8923fa1a04db9cef3f2ac988237f15b2413ff",
+  "task": "timberman",
+  "transitions": 1536,
+  "valid_bounds": 1409,
+  "action_counts": {
+    "0": 359,
+    "1": 1177
+  }
+}
